@@ -73,7 +73,7 @@ to set your password to something only you know.
 In a terminal in the location where you would like to download these course assignment
 materials, enter the following:
 
-    git clone 'https://github.com/pennmem/COGS4390_DataMemoryBrains.git'
+    git clone git@github.com:pennmem/COGS4390_DataMemoryBrains.git
 
     If git is not installed, you can find instructions [here](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
 
