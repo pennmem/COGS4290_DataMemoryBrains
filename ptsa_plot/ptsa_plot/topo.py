@@ -10,7 +10,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-from ptsa.helper import pol2cart, cart2pol, deg2rad
+from .coords import pol2cart, cart2pol, deg2rad
 
 from scipy.interpolate import griddata
 
@@ -222,8 +222,8 @@ def topoplot(values=None, labels=None, sensors=None, axes=None,
     z = values
 
     # resolution determines the number of interpolated points per unit
-    nx = round(resolution*plot_radius)
-    ny = round(resolution*plot_radius)
+    nx = int(round(resolution*plot_radius))
+    ny = int(round(resolution*plot_radius))
 
     # now set up the grid:
     xi, yi = np.meshgrid(np.linspace(-plot_radius, plot_radius,nx),
@@ -241,7 +241,7 @@ def topoplot(values=None, labels=None, sensors=None, axes=None,
         #zi = griddata(x,y,z,xi,yi)
         pass
     elif plot_mask=='circular':
-        npts = np.mean((nx,ny))*2
+        npts = (np.mean((nx,ny))*2).astype(int)
         t = np.linspace(0, 2*np.pi,npts)[:-1]
         x = np.r_[x, np.cos(t)*plot_radius]
         y = np.r_[y, np.sin(t)*plot_radius]
