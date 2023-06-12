@@ -1,6 +1,6 @@
 # Big Data, Memory, and the Human Brain (COGS 4290/PSYC 4290)
 
-These are notes for Spring 2023 semester offering of Big Data, Memory, and the Human Brain (COGS 4290/PSYC 4290). They form a solid introduction to performing EEG analyses and include many resources for learning these tools and methods beyond the homework assignments.
+These are the assignments and supporting material for Michael Kahana's course on "Big Data, Memory, and the Human Brain" (COGS 4290/PSYC 4290) at the University of Pennsylvania. They form a solid introduction to performing EEG analyses and include many resources for learning these tools and methods beyond the homework assignments. These assignments additionally provide a resource for getting up to speed on the research done in Mike's lab.
 
 # Course Structure
 Our goal is to familiarize you with fundamental concepts in human memory and electrophysiology as well as with programming tools needed for the large-scale computing in these fields. The psychology and neuroscience at play in these analyses will be primarily covered in the course lectures. To that end, the course outline is as follows:
@@ -24,10 +24,15 @@ These notebooks prepare you for doing in-depth multi-subject analyses with elect
 
 Appendices 2 and 3 serve as technical references for loading behavioral and EEG data on Rhino as well as computing multiple jobs simultaneously (i.e. to speed up your homework assignments and projects).
 
+Useful technical background:
+* Appendix 4 - **Wavelets**
+    * Provides background on spectral decomposition and Morlet wavelets. Useful for completing Assignments 3 and 4.
+
 Optional analysis appendices:
-* Appendix 4 - **Single Unit Analysis, Spatial Memory**
-* Appendix 5 - **Connectivity**
-* Appendix 6 - **Oscillation Detection**
+* Appendix 5 - **Single Unit Analysis, Spatial Memory**
+* Appendix 6 - **Connectivity**
+* Appendix 7 - **Oscillation Detection**
+* Appendix 8 - **Representational Similarity Analysis**
 
 These final appendices cover advanced topics in computational neuroscience that could serve as inspiration for your final project. If you are interested in these topics, we encourage you watch the associated recorded lectures (contact the course instructors) and go through the notebooks.
 
