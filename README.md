@@ -14,8 +14,11 @@ By the end of this course, you should be able to carry out EEG/iEEG/ECoG analyse
 
 For **Rhino** compute cluster functionality:
 * Appendix 1 - **Introduction to Python, Jupyter, Numpy, and pandas**
+    * Useful intro before starting any of the assignments for people unfamiliar with Python or the covered packages.
 * Appendix 2 - **CMLReaders Usage**
+    * Gives more in-depth coverage of CMLReaders, the data loading package used for most of the experiments run by CML.
 * Appendix 3 - **Parallel computing**
+    * Demonstrates Dask, a parallel job management tool used in Assignments 3 and 4.
 
 These notebooks prepare you for doing in-depth multi-subject analyses with electrophysiological data. In particular, we recommend Appendix 1 for anyone unfamiliar with the Python libraries (including Numpy and Pandas) used extensively in this course. Though this course assumes a basic knowledge of Python and command line tools, we have linked recommended resources in **Notebook 1** for getting started with Python and common data analysis tools. Though this material isn't strictly part of the course, we recommend reviewing it before proceeding to the materials included here unless you are confident in your experience with numpy, pandas, scipy, and basic python syntax. If those words don't mean anything to you (or you want to brush up), please read through these resources! 
 
