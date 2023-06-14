@@ -93,12 +93,12 @@ same location where you ran the git clone command.
 Once you have your password set up, check to be sure you can log in to
 JupyterLab, where you'll be doing most of your coursework. If you are
 connected to the internet on UPenn's campus, you only need to go to
-[https://rhino2.psych.upenn.edu:9000](https://rhino2.psych.upenn.edu:9000) to
+[https://rhino2.psych.upenn.edu:8200](https://rhino2.psych.upenn.edu:8200) to
 access JupyterLab. If you are connecting remotely, follow the rest of this
 step. In a terminal where ssh is accessible, replace the "username" with your
 username, and open an ssh tunnel by typing:
 
-    ssh -L8000:rhino2.psych.upenn.edu:9000 username@rhino2.psych.upenn.edu
+    ssh -L8000:rhino2.psych.upenn.edu:8200 username@rhino2.psych.upenn.edu
 
 followed by entering your rhino password. In your web browser, navigate to:
 
@@ -106,7 +106,7 @@ followed by entering your rhino password. In your web browser, navigate to:
 
 and you should see the JupyterLab interface pop up!  Note that the "s" on https is critical for this to work.  Your browser might warn about this being an insecure connection or invalid certificate, given that 127.0.0.1 (direct to the ssh tunnel on your own computer) is not rhino.  Override this warning and connect anyway, because we are using ssh to provide better security here.  If the connection still fails, go back and make sure that your ssh tunnel was correctly created.
 
-Alternatively, you can use the Penn VPN service GlobalProtect ([https://www.isc.upenn.edu/how-to/university-vpn-getting-started-guide](https://www.isc.upenn.edu/how-to/university-vpn-getting-started-guide)) to access rhino while off-campus as if you were on-campus, i.e. at [https://rhino2.psych.upenn.edu:9000](https://rhino2.psych.upenn.edu:9000). This remote connection method can be stabler than connecting via the SSH tunneling option. 
+Alternatively, you can use the Penn VPN service GlobalProtect ([https://www.isc.upenn.edu/how-to/university-vpn-getting-started-guide](https://www.isc.upenn.edu/how-to/university-vpn-getting-started-guide)) to access rhino while off-campus as if you were on-campus, i.e. at [https://rhino2.psych.upenn.edu:8200](https://rhino2.psych.upenn.edu:8200). This remote connection method can be stabler than connecting via the SSH tunneling option.
 
 ## Setting up your environment (Rhino)
 Good news! Working on rhino gives you access to a computing environment that already has the right software installed to do all the assignments!
