@@ -1,0 +1,34 @@
+2023-08-25 12:28:45,138 - distributed.nanny - INFO -         Start Nanny at: 'tcp://192.168.86.140:33900'
+2023-08-25 12:28:46,770 - distributed.worker - INFO -       Start worker at: tcp://192.168.86.140:43106
+2023-08-25 12:28:46,770 - distributed.worker - INFO -          Listening to: tcp://192.168.86.140:43106
+2023-08-25 12:28:46,770 - distributed.worker - INFO -           Worker name:             SLURMCluster-4
+2023-08-25 12:28:46,770 - distributed.worker - INFO -          dashboard at:       192.168.86.140:34174
+2023-08-25 12:28:46,770 - distributed.worker - INFO - Waiting to connect to: tcp://192.168.86.140:43104
+2023-08-25 12:28:46,770 - distributed.worker - INFO - -------------------------------------------------
+2023-08-25 12:28:46,770 - distributed.worker - INFO -               Threads:                          1
+2023-08-25 12:28:46,770 - distributed.worker - INFO -                Memory:                   0.93 GiB
+2023-08-25 12:28:46,771 - distributed.worker - INFO -       Local Directory: /home1/hherrema/dask-worker-space/dask-scratch-space/worker-jt2jajnb
+2023-08-25 12:28:46,771 - distributed.worker - INFO - -------------------------------------------------
+2023-08-25 12:28:47,217 - distributed.worker - INFO - Starting Worker plugin shuffle
+2023-08-25 12:28:47,217 - distributed.worker - INFO -         Registered to: tcp://192.168.86.140:43104
+2023-08-25 12:28:47,217 - distributed.worker - INFO - -------------------------------------------------
+2023-08-25 12:28:47,218 - distributed.core - INFO - Starting established connection to tcp://192.168.86.140:43104
+2023-08-25 12:28:59,227 - distributed.worker - WARNING - Compute Failed
+Key:       error_add-25eddd48ffa68e758bd7a732066b9278
+Function:  error_add
+args:      (3, 3)
+kwargs:    {}
+Exception: 'ValueError()'
+
+2023-08-25 12:29:19,235 - distributed.worker - WARNING - Compute Failed
+Key:       error_add-a7be20f32fcb5bfe133c38b56ed5736f
+Function:  error_add
+args:      (31, 31)
+kwargs:    {}
+Exception: 'ValueError()'
+
+2023-08-25 12:29:21,968 - distributed.worker - INFO - Stopping worker at tcp://192.168.86.140:43106. Reason: scheduler-remove-worker
+2023-08-25 12:29:21,971 - distributed.nanny - INFO - Closing Nanny gracefully at 'tcp://192.168.86.140:33900'. Reason: scheduler-remove-worker
+2023-08-25 12:29:21,976 - distributed.nanny - INFO - Worker closed
+2023-08-25 12:29:21,976 - distributed.core - INFO - Connection to tcp://192.168.86.140:43104 has been closed.
+slurmstepd: error: *** JOB 241550 ON node40 CANCELLED AT 2023-08-25T12:29:21 ***

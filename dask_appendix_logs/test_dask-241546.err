@@ -1,0 +1,20 @@
+2023-08-25 12:27:43,593 - distributed.nanny - INFO -         Start Nanny at: 'tcp://192.168.86.140:32950'
+2023-08-25 12:27:44,955 - distributed.worker - INFO -       Start worker at: tcp://192.168.86.140:39145
+2023-08-25 12:27:44,956 - distributed.worker - INFO -          Listening to: tcp://192.168.86.140:39145
+2023-08-25 12:27:44,956 - distributed.worker - INFO -           Worker name:             SLURMCluster-0
+2023-08-25 12:27:44,956 - distributed.worker - INFO -          dashboard at:       192.168.86.140:43260
+2023-08-25 12:27:44,956 - distributed.worker - INFO - Waiting to connect to: tcp://192.168.86.140:43104
+2023-08-25 12:27:44,956 - distributed.worker - INFO - -------------------------------------------------
+2023-08-25 12:27:44,956 - distributed.worker - INFO -               Threads:                          1
+2023-08-25 12:27:44,956 - distributed.worker - INFO -                Memory:                   0.93 GiB
+2023-08-25 12:27:44,956 - distributed.worker - INFO -       Local Directory: /home1/hherrema/dask-worker-space/dask-scratch-space/worker-w_pg663t
+2023-08-25 12:27:44,956 - distributed.worker - INFO - -------------------------------------------------
+2023-08-25 12:27:45,244 - distributed.worker - INFO - Starting Worker plugin shuffle
+2023-08-25 12:27:45,244 - distributed.worker - INFO -         Registered to: tcp://192.168.86.140:43104
+2023-08-25 12:27:45,244 - distributed.worker - INFO - -------------------------------------------------
+2023-08-25 12:27:45,245 - distributed.core - INFO - Starting established connection to tcp://192.168.86.140:43104
+2023-08-25 12:28:20,977 - distributed.worker - INFO - Stopping worker at tcp://192.168.86.140:39145. Reason: scheduler-remove-worker
+2023-08-25 12:28:20,987 - distributed.nanny - INFO - Closing Nanny gracefully at 'tcp://192.168.86.140:32950'. Reason: scheduler-remove-worker
+slurmstepd: error: *** JOB 241546 ON node40 CANCELLED AT 2023-08-25T12:28:21 ***
+2023-08-25 12:28:21,024 - distributed.nanny - INFO - Worker closed
+2023-08-25 12:28:21,024 - distributed.core - INFO - Connection to tcp://192.168.86.140:43104 has been closed.

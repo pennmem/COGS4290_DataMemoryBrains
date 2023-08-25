@@ -1,0 +1,20 @@
+2023-08-25 12:27:48,749 - distributed.nanny - INFO -         Start Nanny at: 'tcp://192.168.86.140:44350'
+2023-08-25 12:27:50,062 - distributed.worker - INFO -       Start worker at: tcp://192.168.86.140:42934
+2023-08-25 12:27:50,062 - distributed.worker - INFO -          Listening to: tcp://192.168.86.140:42934
+2023-08-25 12:27:50,062 - distributed.worker - INFO -           Worker name:             SLURMCluster-4
+2023-08-25 12:27:50,062 - distributed.worker - INFO -          dashboard at:       192.168.86.140:41094
+2023-08-25 12:27:50,062 - distributed.worker - INFO - Waiting to connect to: tcp://192.168.86.140:43104
+2023-08-25 12:27:50,062 - distributed.worker - INFO - -------------------------------------------------
+2023-08-25 12:27:50,062 - distributed.worker - INFO -               Threads:                          1
+2023-08-25 12:27:50,062 - distributed.worker - INFO -                Memory:                   0.93 GiB
+2023-08-25 12:27:50,062 - distributed.worker - INFO -       Local Directory: /home1/hherrema/dask-worker-space/dask-scratch-space/worker-fb8iwyxn
+2023-08-25 12:27:50,062 - distributed.worker - INFO - -------------------------------------------------
+2023-08-25 12:27:50,337 - distributed.worker - INFO - Starting Worker plugin shuffle
+2023-08-25 12:27:50,338 - distributed.worker - INFO -         Registered to: tcp://192.168.86.140:43104
+2023-08-25 12:27:50,338 - distributed.worker - INFO - -------------------------------------------------
+2023-08-25 12:27:50,339 - distributed.core - INFO - Starting established connection to tcp://192.168.86.140:43104
+2023-08-25 12:28:24,996 - distributed.worker - INFO - Stopping worker at tcp://192.168.86.140:42934. Reason: scheduler-remove-worker
+2023-08-25 12:28:24,999 - distributed.nanny - INFO - Closing Nanny gracefully at 'tcp://192.168.86.140:44350'. Reason: scheduler-remove-worker
+2023-08-25 12:28:25,004 - distributed.nanny - INFO - Worker closed
+2023-08-25 12:28:25,004 - distributed.core - INFO - Connection to tcp://192.168.86.140:43104 has been closed.
+slurmstepd: error: *** JOB 241548 ON node40 CANCELLED AT 2023-08-25T12:28:25 ***

@@ -1,0 +1,44 @@
+2023-08-25 12:28:45,971 - distributed.nanny - INFO -         Start Nanny at: 'tcp://192.168.86.140:36291'
+2023-08-25 12:28:47,539 - distributed.worker - INFO -       Start worker at: tcp://192.168.86.140:40469
+2023-08-25 12:28:47,540 - distributed.worker - INFO -          Listening to: tcp://192.168.86.140:40469
+2023-08-25 12:28:47,540 - distributed.worker - INFO -           Worker name:             SLURMCluster-6
+2023-08-25 12:28:47,540 - distributed.worker - INFO -          dashboard at:       192.168.86.140:45545
+2023-08-25 12:28:47,540 - distributed.worker - INFO - Waiting to connect to: tcp://192.168.86.140:43104
+2023-08-25 12:28:47,540 - distributed.worker - INFO - -------------------------------------------------
+2023-08-25 12:28:47,540 - distributed.worker - INFO -               Threads:                          1
+2023-08-25 12:28:47,540 - distributed.worker - INFO -                Memory:                   0.93 GiB
+2023-08-25 12:28:47,540 - distributed.worker - INFO -       Local Directory: /home1/hherrema/dask-worker-space/dask-scratch-space/worker-d6g4ap7q
+2023-08-25 12:28:47,540 - distributed.worker - INFO - -------------------------------------------------
+2023-08-25 12:28:47,816 - distributed.worker - INFO - Starting Worker plugin shuffle
+2023-08-25 12:28:47,817 - distributed.worker - INFO -         Registered to: tcp://192.168.86.140:43104
+2023-08-25 12:28:47,817 - distributed.worker - INFO - -------------------------------------------------
+2023-08-25 12:28:47,817 - distributed.core - INFO - Starting established connection to tcp://192.168.86.140:43104
+2023-08-25 12:28:54,825 - distributed.worker - WARNING - Compute Failed
+Key:       error_add-567d01a6d3ed355b1c9bf97bfa389261
+Function:  error_add
+args:      (9, 9)
+kwargs:    {}
+Exception: 'ValueError()'
+
+2023-08-25 12:29:07,833 - distributed.worker - WARNING - Compute Failed
+Key:       error_add-bcd5d92cefceb0be2b517f7e9c9da1b7
+Function:  error_add
+args:      (21, 21)
+kwargs:    {}
+Exception: 'ValueError()'
+
+2023-08-25 12:29:10,841 - distributed.worker - WARNING - Compute Failed
+Key:       error_add-a8575ebd63ea93426c7943bfe0dd0d9e
+Function:  error_add
+args:      (33, 33)
+kwargs:    {}
+Exception: 'ValueError()'
+
+2023-08-25 12:29:18,944 - distributed.worker - WARNING - Compute Failed
+Key:       error_add-78dd38d04f1b782c15c7d466464fdc80
+Function:  error_add
+args:      (37, 37)
+kwargs:    {}
+Exception: 'ValueError()'
+
+slurmstepd: error: *** JOB 241549 ON node40 CANCELLED AT 2023-08-25T12:29:20 ***
