@@ -64,7 +64,7 @@ materials, enter the following:
 
     git clone https://github.com/pennmem/COGS4290_DataMemoryBrains.git
 
-    If git is not installed, you can find instructions [here](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
+If git is not installed, you can find instructions [here](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
 
 This respository will be downloaded to a folder named DataMemoryBrain in the
 same location where you ran the git clone command.
