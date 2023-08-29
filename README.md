@@ -5,36 +5,17 @@ These are the assignments and supporting material for Michael Kahana's course on
 # Course Structure
 Our goal is to familiarize you with fundamental concepts in human memory and electrophysiology as well as with programming tools needed for the large-scale computing in these fields. The psychology and neuroscience at play in these analyses will be primarily covered in the course lectures. To that end, the course outline is as follows:
 
-* Assignment 1: **Behavioral Analysis of Memory Search**
-* Assignment 2: **EEG and Event-Related Potentials**
-* Assignment 3: **Signal processing and spectral analysis**
-* Assignment 4: **Machine Learning**
+* Assignment 0: **Python, Numpy, Pandas, and Plotting**
 
 By the end of this course, you should be able to carry out EEG/iEEG/ECoG analyses, like computing spectral power and phase, and to compute statistics or to apply machine learning models to those data.
 
 For **Rhino** compute cluster functionality:
-* Appendix 1 - **Introduction to Python, Jupyter, Numpy, and pandas**
-    * Useful intro before starting any of the assignments for people unfamiliar with Python or the covered packages.
-* Appendix 2 - **CMLReaders Usage**
-    * Gives more in-depth coverage of CMLReaders, the data loading package used for most of the experiments run by CML.
-* Appendix 3 - **Parallel computing**
-    * Demonstrates Dask, a parallel job management tool used in Assignments 3 and 4.
+* Introduction 1 - **Introduction to Python, Jupyter, Numpy, and pandas**
+    * Useful introduction to standard tooling for using Python for data science.
 
-These notebooks prepare you for doing in-depth multi-subject analyses with electrophysiological data. In particular, we recommend Appendix 1 for anyone unfamiliar with the Python libraries (including Numpy and Pandas) used extensively in this course. Though this course assumes a basic knowledge of Python and command line tools, we have linked recommended resources in **Notebook 1** for getting started with Python and common data analysis tools. Though this material isn't strictly part of the course, we recommend reviewing it before proceeding to the materials included here unless you are confident in your experience with numpy, pandas, scipy, and basic python syntax. If those words don't mean anything to you (or you want to brush up), please read through these resources! 
+These notebooks prepare you for doing in-depth multi-subject analyses with electrophysiological data. In particular, we recommend Appendix 1 for anyone unfamiliar with the Python libraries (including Numpy and Pandas) used extensively in this course. Though this course assumes a basic knowledge of Python and command line tools, we have linked recommended resources in **Introduction 1** for getting started with Python and common data analysis tools. Though this material isn't strictly part of the course, we recommend reviewing it before proceeding to the materials included here unless you are confident in your experience with numpy, pandas, scipy, and basic python syntax. If those words don't mean anything to you (or you want to brush up), please read through these resources! 
 
-Appendices 2 and 3 serve as technical references for loading behavioral and EEG data on Rhino as well as computing multiple jobs simultaneously (i.e. to speed up your homework assignments and projects).
-
-Useful technical background:
-* Appendix 4 - **Wavelets**
-    * Provides background on spectral decomposition and Morlet wavelets. Useful for completing Assignments 3 and 4.
-
-Optional analysis appendices:
-* Appendix 5 - **Single Unit Analysis, Spatial Memory**
-* Appendix 6 - **Connectivity**
-* Appendix 7 - **Oscillation Detection**
-* Appendix 8 - **Representational Similarity Analysis**
-
-These final appendices cover advanced topics in computational neuroscience that could serve as inspiration for your final project. If you are interested in these topics, we encourage you watch the associated recorded lectures (contact the course instructors) and go through the notebooks.
+Additional Introductions and Assignments will be released as the course progresses.
 
 # Initial Setup
 
@@ -81,7 +62,7 @@ to set your password to something only you know.
 In a terminal in the location where you would like to download these course assignment
 materials, enter the following:
 
-    git clone git@github.com:pennmem/COGS4390_DataMemoryBrains.git
+    git clone https://github.com/pennmem/COGS4290_DataMemoryBrains.git
 
     If git is not installed, you can find instructions [here](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
 
@@ -93,12 +74,12 @@ same location where you ran the git clone command.
 Once you have your password set up, check to be sure you can log in to
 JupyterLab, where you'll be doing most of your coursework. If you are
 connected to the internet on UPenn's campus, you only need to go to
-[https://rhino2.psych.upenn.edu:8200](https://rhino2.psych.upenn.edu:8200) to
+[https://rhino2.psych.upenn.edu:9500](https://rhino2.psych.upenn.edu:9500) to
 access JupyterLab. If you are connecting remotely, follow the rest of this
 step. In a terminal where ssh is accessible, replace the "username" with your
 username, and open an ssh tunnel by typing:
 
-    ssh -L8000:rhino2.psych.upenn.edu:8200 username@rhino2.psych.upenn.edu
+    ssh -L8000:rhino2.psych.upenn.edu:9500 username@rhino2.psych.upenn.edu
 
 followed by entering your rhino password. In your web browser, navigate to:
 
@@ -106,7 +87,7 @@ followed by entering your rhino password. In your web browser, navigate to:
 
 and you should see the JupyterLab interface pop up!  Note that the "s" on https is critical for this to work.  Your browser might warn about this being an insecure connection or invalid certificate, given that 127.0.0.1 (direct to the ssh tunnel on your own computer) is not rhino.  Override this warning and connect anyway, because we are using ssh to provide better security here.  If the connection still fails, go back and make sure that your ssh tunnel was correctly created.
 
-Alternatively, you can use the Penn VPN service GlobalProtect ([https://www.isc.upenn.edu/how-to/university-vpn-getting-started-guide](https://www.isc.upenn.edu/how-to/university-vpn-getting-started-guide)) to access rhino while off-campus as if you were on-campus, i.e. at [https://rhino2.psych.upenn.edu:8200](https://rhino2.psych.upenn.edu:8200). This remote connection method can be stabler than connecting via the SSH tunneling option.
+Alternatively, you can use the Penn VPN service GlobalProtect ([https://www.isc.upenn.edu/how-to/university-vpn-getting-started-guide](https://www.isc.upenn.edu/how-to/university-vpn-getting-started-guide)) to access rhino while off-campus as if you were on-campus, i.e. at [https://rhino2.psych.upenn.edu:9500](https://rhino2.psych.upenn.edu:9500). This remote connection method can be stabler than connecting via the SSH tunneling option.
 
 ## Setting up your environment (Rhino)
 Good news! Working on rhino gives you access to a computing environment that already has the right software installed to do all the assignments!
@@ -185,3 +166,4 @@ whole time, you may need to log out and log back in again to see this
 change take effect.
 
 To access the data for this course outside of Rhino, contact kahana-sysadmin@sas.upenn.edu.
+
