@@ -1,0 +1,3 @@
+[submodule "dependencies/bidsreader"]
+	path = dependencies/bidsreader
+	url = git@github.com:pennmem/bidsreader.git
