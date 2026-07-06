@@ -1,0 +1,5 @@
+# Generated analysis outputs
+results/
+
+# Oversized data file exceeding GitHub's 100 MB limit
+data/LTPFR2_WORD__REC_WORD_EVENTS.csv
