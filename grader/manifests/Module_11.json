@@ -1,0 +1,57 @@
+{
+  "module": 11,
+  "assignment": 5,
+  "title": "Signal Processing and Spectral Analysis",
+  "student_notebook": "Module_11_Signal_Spectral_Analysis.ipynb",
+  "solution_notebook": "Solution_Module_11.ipynb",
+  "answers": [
+    {
+      "key": "Q1.1_freqs",
+      "question": "1.1",
+      "role": "plot",
+      "type": "array",
+      "shape_hint": "(8,)",
+      "student_hint": "x-axis frequencies (8 log-spaced, 3..180 Hz) for the R1215M LAST1-LAST2 spectrum"
+    },
+    {
+      "key": "Q1.1_rec_powers",
+      "question": "1.1",
+      "role": "plot",
+      "type": "array",
+      "shape_hint": "(1, 8)",
+      "student_hint": "recalled power spectrum (R1215M, LAST1-LAST2); plotted as np.log10(power) vs freq"
+    },
+    {
+      "key": "Q1.1_nrec_powers",
+      "question": "1.1",
+      "role": "plot",
+      "type": "array",
+      "shape_hint": "(1, 8)",
+      "student_hint": "non-recalled power spectrum (R1215M, LAST1-LAST2); plotted as np.log10(power) vs freq"
+    },
+    {
+      "key": "Q2.1_freqs",
+      "question": "2.1",
+      "role": "plot",
+      "type": "array",
+      "shape_hint": "(16,)",
+      "student_hint": "x-axis frequencies (16 log-spaced, 1..300 Hz) for the E53 spectra"
+    },
+    {
+      "key": "Q2.1_rec_powers",
+      "question": "2.1",
+      "role": "plot",
+      "type": "array",
+      "shape_hint": "(3, 16)",
+      "student_hint": "recalled power spectra for the 3 subjects at electrode E53; plotted as np.log10(power) vs freq"
+    },
+    {
+      "key": "Q2.1_nrec_powers",
+      "question": "2.1",
+      "role": "plot",
+      "type": "array",
+      "shape_hint": "(3, 16)",
+      "student_hint": "non-recalled power spectra for the 3 subjects at electrode E53; plotted as np.log10(power) vs freq"
+    }
+  ]
+}

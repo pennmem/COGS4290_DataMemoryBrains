@@ -1,0 +1,151 @@
+{
+  "module": 15,
+  "assignment": 7,
+  "title": "Signal Processing and Spectral Analysis (iEEG Regional SME)",
+  "student_notebook": "Module_15_Spectral_SME.ipynb",
+  "solution_notebook": "Solution_Module_15.ipynb",
+  "answers": [
+    {
+      "key": "Q1.1_region_counts",
+      "question": "1.1",
+      "role": "value",
+      "type": "dataframe",
+      "columns": [
+        "subject",
+        "temporal",
+        "frontal",
+        "hippo"
+      ],
+      "shape_hint": "(27, 4)",
+      "student_hint": "table of average electrode (bipolar) counts per subject in temporal, frontal, hippocampal regions"
+    },
+    {
+      "key": "Q2.2_rec_means_10hz",
+      "question": "2.2",
+      "role": "plot",
+      "type": "array",
+      "shape_hint": "(2,)",
+      "student_hint": "recalled mean power z-scores [temporal, frontal] at 10 Hz, bipolar reference (errorbar y)"
+    },
+    {
+      "key": "Q2.2_rec_sems_10hz",
+      "question": "2.2",
+      "role": "plot",
+      "type": "array",
+      "shape_hint": "(2,)",
+      "student_hint": "recalled SEM [temporal, frontal] at 10 Hz, bipolar reference (errorbar yerr)"
+    },
+    {
+      "key": "Q2.2_nrec_means_10hz",
+      "question": "2.2",
+      "role": "plot",
+      "type": "array",
+      "shape_hint": "(2,)",
+      "student_hint": "not-recalled mean power z-scores [temporal, frontal] at 10 Hz, bipolar reference"
+    },
+    {
+      "key": "Q2.2_nrec_sems_10hz",
+      "question": "2.2",
+      "role": "plot",
+      "type": "array",
+      "shape_hint": "(2,)",
+      "student_hint": "not-recalled SEM [temporal, frontal] at 10 Hz, bipolar reference"
+    },
+    {
+      "key": "Q2.2_rec_means_147hz",
+      "question": "2.2",
+      "role": "plot",
+      "type": "array",
+      "shape_hint": "(2,)",
+      "student_hint": "recalled mean power z-scores [temporal, frontal] at 147 Hz, bipolar reference"
+    },
+    {
+      "key": "Q2.2_rec_sems_147hz",
+      "question": "2.2",
+      "role": "plot",
+      "type": "array",
+      "shape_hint": "(2,)",
+      "student_hint": "recalled SEM [temporal, frontal] at 147 Hz, bipolar reference"
+    },
+    {
+      "key": "Q2.2_nrec_means_147hz",
+      "question": "2.2",
+      "role": "plot",
+      "type": "array",
+      "shape_hint": "(2,)",
+      "student_hint": "not-recalled mean power z-scores [temporal, frontal] at 147 Hz, bipolar reference"
+    },
+    {
+      "key": "Q2.2_nrec_sems_147hz",
+      "question": "2.2",
+      "role": "plot",
+      "type": "array",
+      "shape_hint": "(2,)",
+      "student_hint": "not-recalled SEM [temporal, frontal] at 147 Hz, bipolar reference"
+    },
+    {
+      "key": "Q3.1_rec_means_10hz",
+      "question": "3.1",
+      "role": "plot",
+      "type": "array",
+      "shape_hint": "(2,)",
+      "student_hint": "recalled mean power z-scores [temporal, frontal] at 10 Hz, region-weighted average reference"
+    },
+    {
+      "key": "Q3.1_rec_sems_10hz",
+      "question": "3.1",
+      "role": "plot",
+      "type": "array",
+      "shape_hint": "(2,)",
+      "student_hint": "recalled SEM [temporal, frontal] at 10 Hz, average reference"
+    },
+    {
+      "key": "Q3.1_nrec_means_10hz",
+      "question": "3.1",
+      "role": "plot",
+      "type": "array",
+      "shape_hint": "(2,)",
+      "student_hint": "not-recalled mean power z-scores [temporal, frontal] at 10 Hz, average reference"
+    },
+    {
+      "key": "Q3.1_nrec_sems_10hz",
+      "question": "3.1",
+      "role": "plot",
+      "type": "array",
+      "shape_hint": "(2,)",
+      "student_hint": "not-recalled SEM [temporal, frontal] at 10 Hz, average reference"
+    },
+    {
+      "key": "Q3.1_rec_means_147hz",
+      "question": "3.1",
+      "role": "plot",
+      "type": "array",
+      "shape_hint": "(2,)",
+      "student_hint": "recalled mean power z-scores [temporal, frontal] at 147 Hz, average reference"
+    },
+    {
+      "key": "Q3.1_rec_sems_147hz",
+      "question": "3.1",
+      "role": "plot",
+      "type": "array",
+      "shape_hint": "(2,)",
+      "student_hint": "recalled SEM [temporal, frontal] at 147 Hz, average reference"
+    },
+    {
+      "key": "Q3.1_nrec_means_147hz",
+      "question": "3.1",
+      "role": "plot",
+      "type": "array",
+      "shape_hint": "(2,)",
+      "student_hint": "not-recalled mean power z-scores [temporal, frontal] at 147 Hz, average reference"
+    },
+    {
+      "key": "Q3.1_nrec_sems_147hz",
+      "question": "3.1",
+      "role": "plot",
+      "type": "array",
+      "shape_hint": "(2,)",
+      "student_hint": "not-recalled SEM [temporal, frontal] at 147 Hz, average reference"
+    }
+  ]
+}

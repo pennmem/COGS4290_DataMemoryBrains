@@ -1,0 +1,131 @@
+{
+  "module": 1,
+  "assignment": 0,
+  "title": "Python, Numpy, and Pandas Warmup",
+  "student_notebook": "Module_01_Python_Numpy_Pandas.ipynb",
+  "solution_notebook": "Solution_Module_01.ipynb",
+  "answers": [
+    {
+      "key": "Q1.1_day_cold",
+      "question": "1.1",
+      "role": "value",
+      "type": "scalar",
+      "student_hint": "day-of-year index (0-364) with the coldest whole-lake mean temperature"
+    },
+    {
+      "key": "Q1.1_day_warm",
+      "question": "1.1",
+      "role": "value",
+      "type": "scalar",
+      "student_hint": "day-of-year index (0-364) with the warmest whole-lake mean temperature"
+    },
+    {
+      "key": "Q1.2_layer_stdevs",
+      "question": "1.2",
+      "role": "value",
+      "type": "array",
+      "shape_hint": "(5,)",
+      "student_hint": "sample std dev (ddof=1) of the whole-lake daily-mean temperature for each 10 m depth layer, ordered 0-10, 10-20, 20-30, 30-40, 40-50 m"
+    },
+    {
+      "key": "Q1.3_t_summer_week",
+      "question": "1.3",
+      "role": "plot",
+      "type": "array",
+      "shape_hint": "(50, 100)",
+      "student_hint": "2-D depth x length temperature profile averaged over the summer week (averaged over width and the 7 days)"
+    },
+    {
+      "key": "Q1.3_t_winter_week",
+      "question": "1.3",
+      "role": "plot",
+      "type": "array",
+      "shape_hint": "(50, 100)",
+      "student_hint": "2-D depth x length temperature profile averaged over the winter week (averaged over width and the 7 days)"
+    },
+    {
+      "key": "Q2.2_qualifying_per_league",
+      "question": "2.2",
+      "role": "value",
+      "type": "json",
+      "student_hint": "number of qualifying midfielders (played >10 90s) per league (Comp), as a league->count mapping"
+    },
+    {
+      "key": "Q2.3_mean_cmp_pct",
+      "question": "2.3",
+      "role": "value",
+      "type": "scalar",
+      "student_hint": "mean total pass completion % across qualifying midfielders"
+    },
+    {
+      "key": "Q2.3_mean_kp_per90",
+      "question": "2.3",
+      "role": "value",
+      "type": "scalar",
+      "student_hint": "mean key passes per 90 across qualifying midfielders"
+    },
+    {
+      "key": "Q2.3_mean_prgdist_per90",
+      "question": "2.3",
+      "role": "value",
+      "type": "scalar",
+      "student_hint": "mean progressive passing distance per 90 across qualifying midfielders"
+    },
+    {
+      "key": "Q2.3_filtered_players",
+      "question": "2.3",
+      "role": "value",
+      "type": "labels",
+      "student_hint": "player names above the mean on all three criteria (completion %, KP/90, PrgDist/90)"
+    },
+    {
+      "key": "Q2.4_players_to_sign",
+      "question": "2.4",
+      "role": "value",
+      "type": "labels",
+      "student_hint": "final list of players to sign after adding the under-25 youth filter"
+    },
+    {
+      "key": "Q2.4_se_cmp_pct",
+      "question": "2.4",
+      "role": "value",
+      "type": "scalar",
+      "student_hint": "standard error of the mean completion % for the players-to-sign subset"
+    },
+    {
+      "key": "Q2.4_se_prgdist_per90",
+      "question": "2.4",
+      "role": "value",
+      "type": "scalar",
+      "student_hint": "standard error of the mean progressive-distance/90 for the players-to-sign subset"
+    },
+    {
+      "key": "Q2.4_se_kp_per90",
+      "question": "2.4",
+      "role": "value",
+      "type": "scalar",
+      "student_hint": "standard error of the mean key-passes/90 for the players-to-sign subset (solution reuses the name kp_90 for this SE)"
+    },
+    {
+      "key": "Q3.1_char_line_counts",
+      "question": "3.1",
+      "role": "value",
+      "type": "json",
+      "student_hint": "number of lines each character speaks, as a character->count mapping (prompt orders them by first appearance; order is not auto-graded)"
+    },
+    {
+      "key": "Q3.2_julia_count",
+      "question": "3.2",
+      "role": "value",
+      "type": "scalar",
+      "student_hint": "number of times the substring 'Julia' is said across all lines"
+    },
+    {
+      "key": "Q3.3_line_10th_words",
+      "question": "3.3",
+      "role": "value",
+      "type": "json",
+      "student_hint": "per line (in order): the 10th alphabetic word, or the line's alphabetic-word count if the line has fewer than 10 words"
+    }
+  ]
+}

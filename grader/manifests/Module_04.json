@@ -1,0 +1,112 @@
+{
+  "module": 4,
+  "assignment": 1,
+  "title": "Behavioral Analysis of Memory Search",
+  "student_notebook": "Module_04_Behavioral_Analysis_of_Memory.ipynb",
+  "solution_notebook": "Solution_Module_04.ipynb",
+  "answers": [
+    {
+      "key": "Q1.1_n_sessions_vffr",
+      "question": "1.1",
+      "role": "value",
+      "type": "scalar",
+      "student_hint": "number of vffr sessions run"
+    },
+    {
+      "key": "Q1.1_n_subjects_vffr",
+      "question": "1.1",
+      "role": "value",
+      "type": "scalar",
+      "student_hint": "number of subjects with at least one vffr session"
+    },
+    {
+      "key": "Q1.2_max_sessions_vffr",
+      "question": "1.2",
+      "role": "value",
+      "type": "scalar",
+      "student_hint": "max sessions run by a single vffr subject"
+    },
+    {
+      "key": "Q1.2_max_session_subjects",
+      "question": "1.2",
+      "role": "value",
+      "type": "labels",
+      "student_hint": "subject ids that ran the max number of vffr sessions"
+    },
+    {
+      "key": "Q2.1_recall_pct",
+      "question": "2.1",
+      "role": "value",
+      "type": "scalar",
+      "student_hint": "R1111M overall recall percentage on FR1 (0-100)"
+    },
+    {
+      "key": "Q2.2_recall_pct_per_list",
+      "question": "2.2",
+      "role": "plot",
+      "type": "array",
+      "shape_hint": "(n_lists,)",
+      "student_hint": "mean recall percentage per list averaged across sessions (the bar-graph heights)"
+    },
+    {
+      "key": "Q3.1_spc_ltp093_ses0",
+      "question": "3.1",
+      "role": "plot",
+      "type": "dataframe",
+      "columns": [
+        "serialpos",
+        "recalled"
+      ],
+      "shape_hint": "(24, 2)",
+      "student_hint": "single-session SPC for LTP093 ltpFR2 ses-0"
+    },
+    {
+      "key": "Q3.2_spc_ltp093_all",
+      "question": "3.2",
+      "role": "plot",
+      "type": "dataframe",
+      "columns": [
+        "serialpos",
+        "recalled"
+      ],
+      "shape_hint": "(24, 2)",
+      "student_hint": "SPC averaged over all of LTP093's ltpFR2 sessions"
+    },
+    {
+      "key": "Q3.3_ave_spc",
+      "question": "3.3",
+      "role": "plot",
+      "type": "dataframe",
+      "columns": [
+        "serialpos",
+        "recalled"
+      ],
+      "shape_hint": "(24, 2)",
+      "student_hint": "between-subject averaged ltpFR2 SPC"
+    },
+    {
+      "key": "Q4.1_spc_immediate",
+      "question": "4.1",
+      "role": "plot",
+      "type": "dataframe",
+      "columns": [
+        "serialpos",
+        "recalled"
+      ],
+      "shape_hint": "(24, 2)",
+      "student_hint": "between-subject SPC for immediate recall (final_distractor=0)"
+    },
+    {
+      "key": "Q4.1_spc_delayed",
+      "question": "4.1",
+      "role": "plot",
+      "type": "dataframe",
+      "columns": [
+        "serialpos",
+        "recalled"
+      ],
+      "shape_hint": "(24, 2)",
+      "student_hint": "between-subject SPC for delayed recall (final_distractor=16000)"
+    }
+  ]
+}

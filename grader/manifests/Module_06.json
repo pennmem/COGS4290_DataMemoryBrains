@@ -1,0 +1,81 @@
+{
+  "module": 6,
+  "assignment": 2,
+  "title": "IRT Growth Curves, Lag-CRP, and PLI Recency",
+  "student_notebook": "Module_06_IRT_Lag-CRP_PLI.ipynb",
+  "solution_notebook": "Solution_Module_06.ipynb",
+  "answers": [
+    {
+      "key": "Q1.1_irt_ltp093",
+      "question": "1.1",
+      "role": "plot",
+      "type": "dataframe",
+      "columns": [
+        "Total Correct",
+        "Transition Position",
+        "IRT (ms)"
+      ],
+      "student_hint": "IRT growth curves for LTP093: mean IRT (ms) per (total correct on the list, transition position) -- the points seaborn plots, one line per total-correct"
+    },
+    {
+      "key": "Q1.2_irt_between_subject",
+      "question": "1.2",
+      "role": "plot",
+      "type": "dataframe",
+      "columns": [
+        "Total Correct",
+        "Transition Position",
+        "IRT (ms)"
+      ],
+      "student_hint": "between-subject IRT growth curves over the 24-session cohort (session 23 dropped): mean IRT (ms) per (total correct, transition position)"
+    },
+    {
+      "key": "Q2.1_lag_crp_ltp093_ses0",
+      "question": "2.1",
+      "role": "plot",
+      "type": "dataframe",
+      "columns": [
+        "subject",
+        "lag",
+        "CRP"
+      ],
+      "student_hint": "Lag-CRP for LTP093 session 0 only: conditional response probability at each lag (-23..23), NaN at lag 0"
+    },
+    {
+      "key": "Q2.2_lag_crp_ltp093_all",
+      "question": "2.2",
+      "role": "plot",
+      "type": "dataframe",
+      "columns": [
+        "subject",
+        "lag",
+        "CRP"
+      ],
+      "student_hint": "Lag-CRP for LTP093 averaged over all of the subject's ltpfr2 sessions"
+    },
+    {
+      "key": "Q2.3_lag_crp_between_subject",
+      "question": "2.3",
+      "role": "plot",
+      "type": "dataframe",
+      "columns": [
+        "subject",
+        "lag",
+        "CRP"
+      ],
+      "student_hint": "between-subject Lag-CRP over the 24-session cohort (per-subject CRP at each lag; seaborn averages across subjects)"
+    },
+    {
+      "key": "Q3.1_pli_recency",
+      "question": "3.1",
+      "role": "plot",
+      "type": "dataframe",
+      "columns": [
+        "subject",
+        "list_lag",
+        "PLI"
+      ],
+      "student_hint": "PLI recency curve restricted to lists 10-24: per-subject proportion of prior-list intrusions coming from list_lag lists back (seaborn averages across subjects)"
+    }
+  ]
+}

@@ -1,0 +1,68 @@
+{
+  "module": 8,
+  "assignment": 3,
+  "title": "EEG and Event-Related Potentials",
+  "student_notebook": "Module_08_EEG_ERPs.ipynb",
+  "solution_notebook": "Solution_Module_08.ipynb",
+  "answers": [
+    {
+      "key": "Q1.1_n_temporal_electrodes",
+      "question": "1.1",
+      "role": "value",
+      "type": "scalar",
+      "student_hint": "number of R1111M contacts whose ind.region label contains 'temporal'"
+    },
+    {
+      "key": "Q1.2_left_hemisphere",
+      "question": "1.2",
+      "role": "value",
+      "type": "scalar",
+      "student_hint": "count of R1111M contacts on the left hemisphere"
+    },
+    {
+      "key": "Q1.2_right_hemisphere",
+      "question": "1.2",
+      "role": "value",
+      "type": "scalar",
+      "student_hint": "count of R1111M contacts on the right hemisphere"
+    },
+    {
+      "key": "Q2.1_times_ms",
+      "question": "2.1",
+      "role": "plot",
+      "type": "array",
+      "shape_hint": "(2001,)",
+      "student_hint": "x-axis: time relative to word onset in ms (-400..1600)"
+    },
+    {
+      "key": "Q2.1_erp_recalled",
+      "question": "2.1",
+      "role": "plot",
+      "type": "array",
+      "shape_hint": "(2001,)",
+      "student_hint": "mean z-scored ERP across subsequently-recalled trials (recalled trace)"
+    },
+    {
+      "key": "Q2.1_erp_not_recalled",
+      "question": "2.1",
+      "role": "plot",
+      "type": "array",
+      "shape_hint": "(2001,)",
+      "student_hint": "mean z-scored ERP across not-recalled trials (not-recalled trace)"
+    },
+    {
+      "key": "Q2.2_n_sig_uncorrected",
+      "question": "2.2",
+      "role": "value",
+      "type": "scalar",
+      "student_hint": "number of time points with uncorrected Welch t-test p<0.05"
+    },
+    {
+      "key": "Q2.2_n_sig_fdr",
+      "question": "2.2",
+      "role": "value",
+      "type": "scalar",
+      "student_hint": "number of time points significant after Benjamini-Hochberg FDR (q<0.05)"
+    }
+  ]
+}

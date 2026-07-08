@@ -1,0 +1,167 @@
+{
+  "module": 14,
+  "assignment": 6,
+  "title": "Spectral Inferences (z-power and topographic SME)",
+  "student_notebook": "Module_14_Spectral_Inferences.ipynb",
+  "solution_notebook": "Solution_Module_14.ipynb",
+  "answers": [
+    {
+      "key": "Q1.1_freqs",
+      "question": "1.1",
+      "role": "plot",
+      "type": "array",
+      "shape_hint": "(16,)",
+      "student_hint": "x-axis frequencies (16 log-spaced, 1..300 Hz), shared by all Q1/Q2 spectra plots"
+    },
+    {
+      "key": "Q1.1_rec_log_mean",
+      "question": "1.1",
+      "role": "plot",
+      "type": "array",
+      "shape_hint": "(16,)",
+      "student_hint": "across-subject mean of per-subject log10 power spectra, recalled (part 1)"
+    },
+    {
+      "key": "Q1.1_nrec_log_mean",
+      "question": "1.1",
+      "role": "plot",
+      "type": "array",
+      "shape_hint": "(16,)",
+      "student_hint": "across-subject mean of per-subject log10 power spectra, non-recalled (part 1)"
+    },
+    {
+      "key": "Q1.1_subject_stat_table",
+      "question": "1.1",
+      "role": "value",
+      "type": "json",
+      "student_hint": "solution-only: LaTeX subject-stats table string (see review notes)"
+    },
+    {
+      "key": "Q1.2_rec_avg",
+      "question": "1.2",
+      "role": "plot",
+      "type": "array",
+      "shape_hint": "(16,)",
+      "student_hint": "across-subject mean power (no log-transform), recalled (part 2, semilog-x)"
+    },
+    {
+      "key": "Q1.2_nrec_avg",
+      "question": "1.2",
+      "role": "plot",
+      "type": "array",
+      "shape_hint": "(16,)",
+      "student_hint": "across-subject mean power (no log-transform), non-recalled (part 2, semilog-x)"
+    },
+    {
+      "key": "Q1.3_rec_avg",
+      "question": "1.3",
+      "role": "plot",
+      "type": "array",
+      "shape_hint": "(16,)",
+      "student_hint": "same recalled mean power as Q1.2, plotted on linear axes (part 3, no semilog)"
+    },
+    {
+      "key": "Q1.3_nrec_avg",
+      "question": "1.3",
+      "role": "plot",
+      "type": "array",
+      "shape_hint": "(16,)",
+      "student_hint": "same non-recalled mean power as Q1.2, plotted on linear axes (part 3, no semilog)"
+    },
+    {
+      "key": "Q1.4_log_diff_mean",
+      "question": "1.4",
+      "role": "plot",
+      "type": "array",
+      "shape_hint": "(16,)",
+      "student_hint": "across-subject mean of per-subject (recalled - non-recalled) log-power differences (part 4)"
+    },
+    {
+      "key": "Q2.1_rec_z_mean",
+      "question": "2.1",
+      "role": "plot",
+      "type": "array",
+      "shape_hint": "(16,)",
+      "student_hint": "across-subject mean z-scored power spectrum, recalled (see binding note in review_notes)"
+    },
+    {
+      "key": "Q2.1_nrec_z_mean",
+      "question": "2.1",
+      "role": "plot",
+      "type": "array",
+      "shape_hint": "(16,)",
+      "student_hint": "across-subject mean z-scored power spectrum, non-recalled (see binding note in review_notes)"
+    },
+    {
+      "key": "Q2.2_rec_logpow",
+      "question": "2.2",
+      "role": "plot",
+      "type": "array",
+      "shape_hint": "(16,)",
+      "student_hint": "across-subject mean log-power spectrum, recalled (variable rec_z_mean holds log-power here)"
+    },
+    {
+      "key": "Q2.2_nrec_logpow",
+      "question": "2.2",
+      "role": "plot",
+      "type": "array",
+      "shape_hint": "(16,)",
+      "student_hint": "across-subject mean log-power spectrum, non-recalled (variable nrec_z_mean holds log-power here)"
+    },
+    {
+      "key": "Q2.3_transform",
+      "question": "2.3",
+      "role": "plot",
+      "type": "array",
+      "shape_hint": "(16,)",
+      "student_hint": "student-chosen third transformation of the power spectrum (solution has no answer)"
+    },
+    {
+      "key": "Q3.1_diff_elecs",
+      "question": "3.1",
+      "role": "plot",
+      "type": "array",
+      "shape_hint": "(n_electrodes,)",
+      "student_hint": "per-electrode SME (recalled - non-recalled) z-scored power at 147 Hz; the values feeding the topoplot"
+    },
+    {
+      "key": "Q3.1_plot_powers",
+      "question": "3.1",
+      "role": "plot",
+      "type": "array",
+      "shape_hint": "(129,)",
+      "student_hint": "129-length topo array (diff_elecs scattered onto the HCGSN128 layout by electrode number) passed as topoplot values="
+    },
+    {
+      "key": "Q3.1_rec_elecs",
+      "question": "3.1",
+      "role": "plot",
+      "type": "array",
+      "shape_hint": "(n_electrodes,)",
+      "student_hint": "across-subject mean z-power per electrode at 147 Hz, recalled"
+    },
+    {
+      "key": "Q3.1_nrec_elecs",
+      "question": "3.1",
+      "role": "plot",
+      "type": "array",
+      "shape_hint": "(n_electrodes,)",
+      "student_hint": "across-subject mean z-power per electrode at 147 Hz, non-recalled"
+    },
+    {
+      "key": "Q3.1_fdr_sig",
+      "question": "3.1",
+      "role": "value",
+      "type": "array",
+      "shape_hint": "(n_electrodes,)",
+      "student_hint": "boolean mask of electrodes surviving Benjamini-Hochberg FDR at p<0.05"
+    },
+    {
+      "key": "Q3.1_n_significant",
+      "question": "3.1",
+      "role": "value",
+      "type": "scalar",
+      "student_hint": "number of electrodes significant after BH FDR correction"
+    }
+  ]
+}

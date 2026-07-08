@@ -1,0 +1,106 @@
+{
+  "module": 19,
+  "assignment": 9,
+  "title": "Hyperparameters and Nested Cross-Validation (Penalization / Coefficients)",
+  "student_notebook": "Module_19_Hyperparameters_Nested_CV.ipynb",
+  "solution_notebook": "Solution_Module_19.ipynb",
+  "answers": [
+    {
+      "key": "Q1.1_avg_fpr",
+      "question": "1.1",
+      "role": "plot",
+      "type": "array",
+      "shape_hint": "(200,)",
+      "student_hint": "shared FPR axis for the nested-CV average ROC (linspace 0..1, 200 pts)"
+    },
+    {
+      "key": "Q1.1_avg_tpr",
+      "question": "1.1",
+      "role": "plot",
+      "type": "array",
+      "shape_hint": "(200,)",
+      "student_hint": "across-subject average ROC (mean interpolated TPR) for nested-CV-tuned models"
+    },
+    {
+      "key": "Q1.1_nest_aucs",
+      "question": "1.1",
+      "role": "plot",
+      "type": "array",
+      "shape_hint": "(n_subjects,)",
+      "student_hint": "per-subject nested-CV outer-fold mean AUC (hyperparameter-tuned)"
+    },
+    {
+      "key": "Q1.1_mean_nested_auc",
+      "question": "1.1",
+      "role": "value",
+      "type": "scalar",
+      "student_hint": "between-subject mean nested-CV AUC"
+    },
+    {
+      "key": "Q2.1_auc_df",
+      "question": "2.1",
+      "role": "plot",
+      "type": "dataframe",
+      "columns": [
+        "Method",
+        "AUC"
+      ],
+      "shape_hint": "(3*n_subjects, 2)",
+      "student_hint": "per-subject AUC by penalization scheme (Method in L2/L1/Elastic, AUC value)"
+    },
+    {
+      "key": "Q3.1_coefs_l2_sub0",
+      "question": "3.1",
+      "role": "plot",
+      "type": "array",
+      "shape_hint": "(n_folds*n_features,)",
+      "student_hint": "pooled L2 classifier coefficients (across outer folds) for the 1st subject"
+    },
+    {
+      "key": "Q3.1_coefs_l1_sub0",
+      "question": "3.1",
+      "role": "plot",
+      "type": "array",
+      "shape_hint": "(n_folds*n_features,)",
+      "student_hint": "pooled L1/Lasso classifier coefficients (across outer folds) for the 1st subject (sparse)"
+    },
+    {
+      "key": "Q3.1_coefs_elastic_sub0",
+      "question": "3.1",
+      "role": "plot",
+      "type": "array",
+      "shape_hint": "(n_folds*n_features,)",
+      "student_hint": "pooled elastic-net classifier coefficients (across outer folds) for the 1st subject"
+    },
+    {
+      "key": "Q4.1_no_z_aucs",
+      "question": "4.1",
+      "role": "plot",
+      "type": "array",
+      "shape_hint": "(n_subjects,)",
+      "student_hint": "per-subject nested-CV AUC using raw (non-z-scored) features"
+    },
+    {
+      "key": "Q4.1_avg_tpr_no_z",
+      "question": "4.1",
+      "role": "plot",
+      "type": "array",
+      "shape_hint": "(200,)",
+      "student_hint": "across-subject average ROC for non-z-scored nested-CV models"
+    },
+    {
+      "key": "Q4.1_mean_auc_z",
+      "question": "4.1",
+      "role": "value",
+      "type": "scalar",
+      "student_hint": "between-subject mean AUC WITH z-scored features"
+    },
+    {
+      "key": "Q4.1_mean_auc_no_z",
+      "question": "4.1",
+      "role": "value",
+      "type": "scalar",
+      "student_hint": "between-subject mean AUC WITHOUT z-scored features"
+    }
+  ]
+}

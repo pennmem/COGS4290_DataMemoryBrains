@@ -1,0 +1,127 @@
+{
+  "module": 16,
+  "assignment": 8,
+  "title": "Machine Learning (Logistic-Regression Classifier ROC/AUC)",
+  "student_notebook": "Module_16_Machine_Learning.ipynb",
+  "solution_notebook": "Solution_Module_17.ipynb",
+  "answers": [
+    {
+      "key": "Q2.1_preds_sub0",
+      "question": "2.1",
+      "role": "plot",
+      "type": "array",
+      "shape_hint": "(n_events_sub0,)",
+      "student_hint": "cross-validated predicted recall probabilities for the 1st subject (res_subs[0]), pooled across folds"
+    },
+    {
+      "key": "Q2.1_preds_sub1",
+      "question": "2.1",
+      "role": "plot",
+      "type": "array",
+      "shape_hint": "(n_events_sub1,)",
+      "student_hint": "cross-validated predicted recall probabilities for the 2nd subject, pooled across folds"
+    },
+    {
+      "key": "Q2.1_preds_sub2",
+      "question": "2.1",
+      "role": "plot",
+      "type": "array",
+      "shape_hint": "(n_events_sub2,)",
+      "student_hint": "cross-validated predicted recall probabilities for the 3rd subject, pooled across folds"
+    },
+    {
+      "key": "Q2.1_ys_sub0",
+      "question": "2.1",
+      "role": "plot",
+      "type": "array",
+      "shape_hint": "(n_events_sub0,)",
+      "student_hint": "true recall labels (0/1) for the 1st subject's encoding events (used to color the histogram)"
+    },
+    {
+      "key": "Q2.1_ys_sub1",
+      "question": "2.1",
+      "role": "plot",
+      "type": "array",
+      "shape_hint": "(n_events_sub1,)",
+      "student_hint": "true recall labels (0/1) for the 2nd subject's encoding events"
+    },
+    {
+      "key": "Q2.1_ys_sub2",
+      "question": "2.1",
+      "role": "plot",
+      "type": "array",
+      "shape_hint": "(n_events_sub2,)",
+      "student_hint": "true recall labels (0/1) for the 3rd subject's encoding events"
+    },
+    {
+      "key": "Q3.1_avg_fpr",
+      "question": "3.1",
+      "role": "plot",
+      "type": "array",
+      "shape_hint": "(200,)",
+      "student_hint": "shared false-positive-rate axis for the average ROC (linspace 0..1, 200 pts)"
+    },
+    {
+      "key": "Q3.1_avg_tpr",
+      "question": "3.1",
+      "role": "plot",
+      "type": "array",
+      "shape_hint": "(200,)",
+      "student_hint": "across-subject average ROC curve (mean interpolated TPR over the 200-pt FPR grid)"
+    },
+    {
+      "key": "Q3.1_subj_aucs",
+      "question": "3.1",
+      "role": "plot",
+      "type": "array",
+      "shape_hint": "(n_subjects,)",
+      "student_hint": "per-subject AUC computed from predictions pooled across CV folds (the subjects'-AUC histogram)"
+    },
+    {
+      "key": "Q3.1_mean_auc",
+      "question": "3.1",
+      "role": "value",
+      "type": "scalar",
+      "student_hint": "between-subject average of the pooled-fold AUCs"
+    },
+    {
+      "key": "Q3.1_fpr_sub0",
+      "question": "3.1",
+      "role": "plot",
+      "type": "array",
+      "shape_hint": "(n_thresholds_sub0,)",
+      "student_hint": "false-positive rates of the 1st subject's ROC curve (length varies with number of distinct thresholds)"
+    },
+    {
+      "key": "Q3.1_tpr_sub0",
+      "question": "3.1",
+      "role": "plot",
+      "type": "array",
+      "shape_hint": "(n_thresholds_sub0,)",
+      "student_hint": "true-positive rates of the 1st subject's ROC curve (length-sensitive; grade with judgment)"
+    },
+    {
+      "key": "Q4.1_cv_aucs",
+      "question": "4.1",
+      "role": "plot",
+      "type": "array",
+      "shape_hint": "(n_subjects,)",
+      "student_hint": "per-subject mean TEST AUC across CV folds (test histogram)"
+    },
+    {
+      "key": "Q4.1_cv_train_aucs",
+      "question": "4.1",
+      "role": "plot",
+      "type": "array",
+      "shape_hint": "(n_subjects,)",
+      "student_hint": "per-subject mean TRAIN AUC across CV folds (train histogram)"
+    },
+    {
+      "key": "Q4.1_mean_auc_diff",
+      "question": "4.1",
+      "role": "value",
+      "type": "scalar",
+      "student_hint": "mean across subjects of (test AUC - train AUC)"
+    }
+  ]
+}
