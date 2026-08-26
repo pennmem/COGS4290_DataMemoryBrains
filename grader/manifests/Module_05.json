@@ -1,9 +1,9 @@
 {
-  "module": 6,
+  "module": 5,
   "assignment": 2,
   "title": "IRT Growth Curves, Lag-CRP, and PLI Recency",
-  "student_notebook": "Module_06_IRT_Lag-CRP_PLI.ipynb",
-  "solution_notebook": "Solution_Module_06.ipynb",
+  "student_notebook": "Module_05_IRT_Lag-CRP_PLI.ipynb",
+  "solution_notebook": "Solution_Module_05.ipynb",
   "answers": [
     {
       "key": "Q1.1_irt_ltp093",

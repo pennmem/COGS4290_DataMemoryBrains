@@ -1,9 +1,9 @@
 {
-  "module": 4,
+  "module": 3,
   "assignment": 1,
   "title": "Behavioral Analysis of Memory Search",
-  "student_notebook": "Module_04_Behavioral_Analysis_of_Memory.ipynb",
-  "solution_notebook": "Solution_Module_04.ipynb",
+  "student_notebook": "Module_03_Behavioral_Analysis_of_Memory.ipynb",
+  "solution_notebook": "Solution_Module_03.ipynb",
   "answers": [
     {
       "key": "Q1.1_n_sessions_vffr",

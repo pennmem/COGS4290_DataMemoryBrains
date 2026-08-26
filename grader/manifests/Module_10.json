@@ -1,9 +1,9 @@
 {
-  "module": 11,
+  "module": 10,
   "assignment": 5,
   "title": "Signal Processing and Spectral Analysis",
-  "student_notebook": "Module_11_Signal_Spectral_Analysis.ipynb",
-  "solution_notebook": "Solution_Module_11.ipynb",
+  "student_notebook": "Module_10_Signal_Spectral_Analysis.ipynb",
+  "solution_notebook": "Solution_Module_10.ipynb",
   "answers": [
     {
       "key": "Q1.1_freqs",

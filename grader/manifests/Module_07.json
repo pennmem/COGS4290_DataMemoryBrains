@@ -1,9 +1,9 @@
 {
-  "module": 8,
+  "module": 7,
   "assignment": 3,
   "title": "EEG and Event-Related Potentials",
-  "student_notebook": "Module_08_EEG_ERPs.ipynb",
-  "solution_notebook": "Solution_Module_08.ipynb",
+  "student_notebook": "Module_07_EEG_ERPs.ipynb",
+  "solution_notebook": "Solution_Module_07.ipynb",
   "answers": [
     {
       "key": "Q1.1_n_temporal_electrodes",
