@@ -1,0 +1,18 @@
+# Conda / Python installers — never commit these (GitHub rejects files >100 MB)
+Miniconda3-*.sh
+Anaconda3-*.sh
+*.pkg
+
+# Python bytecode
+__pycache__/
+*.py[cod]
+
+# Jupyter
+.ipynb_checkpoints/
+.virtual_documents/
+
+# Student answer output produced by the grader
+answers/
+
+# OS cruft
+.DS_Store

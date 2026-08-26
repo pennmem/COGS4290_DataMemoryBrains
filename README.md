@@ -14,7 +14,8 @@ computing in these fields. The psychology and neuroscience at play in these
 analyses will be primarily covered in the course lectures. To that end, the
 course outline is as follows:
 
-* Assignment 0: **Python, Numpy, Pandas, and Plotting** (Intro 0)
+* Assignment 0: **Python, Numpy, Pandas, and Plotting** (Module 0 — teaching and
+  graded problems are combined in this one notebook)
 * Assignment 1: **Behavioral Analysis of Memory** (Intro 1)
 * Assignment 2: **Inter-Response Times (IRTs), Lag Conditional Response Probabilities (Lag-CRP), and Prior List Intrusions (PLIs)** (Intro 2)
 * Assignment 3: **Electroencephalography (EEG), Event-Related Potentials (ERPs)** (Intro 3)

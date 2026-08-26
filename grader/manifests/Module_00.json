@@ -1,9 +1,9 @@
 {
-  "module": 1,
+  "module": 0,
   "assignment": 0,
   "title": "Python, Numpy, and Pandas Warmup",
-  "student_notebook": "Module_01_Python_Numpy_Pandas.ipynb",
-  "solution_notebook": "Solution_Module_01.ipynb",
+  "student_notebook": "Module_00_Python_Jupyter_Numpy_Pandas.ipynb",
+  "solution_notebook": "Solution_Module_00.ipynb",
   "answers": [
     {
       "key": "Q1.1_day_cold",
@@ -58,20 +58,6 @@
       "student_hint": "mean total pass completion % across qualifying midfielders"
     },
     {
-      "key": "Q2.3_mean_kp_per90",
-      "question": "2.3",
-      "role": "value",
-      "type": "scalar",
-      "student_hint": "mean key passes per 90 across qualifying midfielders"
-    },
-    {
-      "key": "Q2.3_mean_prgdist_per90",
-      "question": "2.3",
-      "role": "value",
-      "type": "scalar",
-      "student_hint": "mean progressive passing distance per 90 across qualifying midfielders"
-    },
-    {
       "key": "Q2.3_filtered_players",
       "question": "2.3",
       "role": "value",
@@ -93,39 +79,18 @@
       "student_hint": "standard error of the mean completion % for the players-to-sign subset"
     },
     {
-      "key": "Q2.4_se_prgdist_per90",
-      "question": "2.4",
-      "role": "value",
-      "type": "scalar",
-      "student_hint": "standard error of the mean progressive-distance/90 for the players-to-sign subset"
-    },
-    {
-      "key": "Q2.4_se_kp_per90",
-      "question": "2.4",
-      "role": "value",
-      "type": "scalar",
-      "student_hint": "standard error of the mean key-passes/90 for the players-to-sign subset (solution reuses the name kp_90 for this SE)"
-    },
-    {
       "key": "Q3.1_char_line_counts",
       "question": "3.1",
       "role": "value",
       "type": "json",
-      "student_hint": "number of lines each character speaks, as a character->count mapping (prompt orders them by first appearance; order is not auto-graded)"
+      "student_hint": "number of lines each character speaks, as a character->count mapping (order is not auto-graded)"
     },
     {
       "key": "Q3.2_julia_count",
       "question": "3.2",
       "role": "value",
       "type": "scalar",
-      "student_hint": "number of times the substring 'Julia' is said across all lines"
-    },
-    {
-      "key": "Q3.3_line_10th_words",
-      "question": "3.3",
-      "role": "value",
-      "type": "json",
-      "student_hint": "per line (in order): the 10th alphabetic word, or the line's alphabetic-word count if the line has fewer than 10 words"
+      "student_hint": "number of times the word 'Julia' is said across all lines"
     }
   ]
 }
