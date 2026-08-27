@@ -14,9 +14,8 @@ computing in these fields. The psychology and neuroscience at play in these
 analyses will be primarily covered in the course lectures. To that end, the
 course outline is as follows:
 
-* Assignment 0: **Python, Numpy, Pandas, and Plotting** (Module 0 — teaching and
-  graded problems are combined in this one notebook)
-* Assignment 1: **Behavioral Analysis of Memory** (Intro 1)
+* Assignment 0: **Python, Numpy, Pandas, and Plotting** (Module 00)
+* Assignment 1: **Behavioral Analysis of Memory** (Module )
 * Assignment 2: **Inter-Response Times (IRTs), Lag Conditional Response Probabilities (Lag-CRP), and Prior List Intrusions (PLIs)** (Intro 2)
 * Assignment 3: **Electroencephalography (EEG), Event-Related Potentials (ERPs)** (Intro 3)
 * Assignment 4: **Inferential Statistics with ERPs** (Intro 4)
@@ -214,6 +213,68 @@ should see an option to launch a new notebook with "environmentname" as your
 Python environment. If you've been logged in to JupyterLab this whole time, you
 may need to log out and log back in again to see this change take effect.
 
-To access the data for this course outside of Rhino, contact
-kahana-sysadmin@sas.upenn.edu.
+## Getting the data (no Rhino account needed)
+
+The notebooks no longer read from cluster paths like `/data/LTP_BIDS/`. They
+download what they need from [OpenNeuro](https://openneuro.org), where the lab
+publishes its BIDS datasets under a CC0 licence, using the helper in
+[`cml_data.py`](cml_data.py):
+
+```python
+from cml_data import openneuro_root
+
+root = openneuro_root("FR1", subject="R1111M", session=0)   # events + channels only
+reader = BIDSReader(root=root, subject="R1111M", session=0, task="FR1")
+```
+
+Files are cached in `./bids_data/` (gitignored), so a notebook only downloads
+each file once. Set `CML_BIDS_CACHE` to put the cache somewhere else.
+
+**Behavioural data is small** — a few hundred KB per session — so the behavioural
+notebooks cost almost nothing to run. **The recordings are large** (300–700 MB per
+session), so they are skipped unless you ask for them:
+
+```python
+root = openneuro_root("FR1", subject="R1111M", session=0,
+                      include_timeseries=True, acquisition="monopolar")
+```
+
+You can also explore a dataset before downloading anything:
+
+```python
+from cml_data import available_subjects, available_tasks
+available_subjects("ltpFR2")          # 364 PEERS subjects
+available_tasks("ltpFR2", "LTP093")   # ['ltpFR', 'ltpFR2']
+```
+
+Or from the command line:
+
+    python cml_data.py FR1 --list-subjects
+    python cml_data.py FR1 --subject R1111M --session 0 --eeg --acq monopolar
+
+| Task | OpenNeuro | Type |
+|---|---|---|
+| `FR1` | [ds004789](https://openneuro.org/datasets/ds004789) | intracranial |
+| `catFR1` | [ds004809](https://openneuro.org/datasets/ds004809) | intracranial |
+| `PAL1` | [ds005059](https://openneuro.org/datasets/ds005059) | intracranial |
+| `pyFR` | [ds004865](https://openneuro.org/datasets/ds004865) | intracranial |
+| `RepFR1` | [ds005411](https://openneuro.org/datasets/ds005411) | intracranial |
+| `ltpFR`, `ltpFR2`, `VFFR` (PEERS) | [ds004395](https://openneuro.org/datasets/ds004395) | scalp EEG |
+| `NICLS` | [ds004706](https://openneuro.org/datasets/ds004706) | scalp EEG |
+
+Note that BIDS task labels are **case-sensitive** (`ltpFR2`, not `ltpfr2`) when you
+pass them to `BIDSReader`; `openneuro_root` accepts either.
+
+The RSA modules additionally need precomputed derivative files that are *not* part
+of the OpenNeuro release — see the note at the top of those notebooks.
+
+### The bidsreader submodule
+
+Most notebooks import `bidsreader` from `dependencies/bidsreader`. Fetch it with:
+
+    git submodule update --init --recursive
+
+If you still have Rhino access and prefer to read from the cluster directly, pass
+the cluster path as `root=` instead of calling `openneuro_root`. For questions about
+data access, contact kahana-sysadmin@sas.upenn.edu.
 

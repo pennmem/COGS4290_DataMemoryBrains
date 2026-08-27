@@ -14,5 +14,9 @@ __pycache__/
 # Student answer output produced by the grader
 answers/
 
+# BIDS data downloaded from OpenNeuro by cml_data.py (can reach many GB)
+bids_data/
+*.part
+
 # OS cruft
 .DS_Store
