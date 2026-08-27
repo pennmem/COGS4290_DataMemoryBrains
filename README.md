@@ -213,44 +213,78 @@ should see an option to launch a new notebook with "environmentname" as your
 Python environment. If you've been logged in to JupyterLab this whole time, you
 may need to log out and log back in again to see this change take effect.
 
-## Getting the data (no Rhino account needed)
+## Getting the data
 
-The notebooks no longer read from cluster paths like `/data/LTP_BIDS/`. They
-download what they need from [OpenNeuro](https://openneuro.org), where the lab
-publishes its BIDS datasets under a CC0 licence, using the helper in
-[`cml_data.py`](cml_data.py):
+The data lives in two places, and the notebooks work with either.
 
-```python
-from cml_data import openneuro_root
+**On Rhino**, it is already on disk under `/data/LTP_BIDS/` and you need to do
+nothing at all.
 
-root = openneuro_root("FR1", subject="R1111M", session=0)   # events + channels only
-reader = BIDSReader(root=root, subject="R1111M", session=0, task="FR1")
+**Anywhere else**, download it from [OpenNeuro](https://openneuro.org), where the
+lab publishes its BIDS datasets under a CC0 licence.
+
+### Downloading from OpenNeuro
+
+Use the [`cml_data.py`](cml_data.py) helper included in this repository. To see
+what a dataset contains before downloading anything:
+
+    python cml_data.py FR1 --list-subjects
+
+To download one subject's behavioural events, channel tables, and electrode
+coordinates (a few hundred KB):
+
+    python cml_data.py FR1 --subject R1111M --session 0
+
+To also download the EEG recording itself — this is the big one, 300–700 MB per
+session, so be deliberate about it:
+
+    python cml_data.py FR1 --subject R1111M --session 0 --eeg --acq monopolar
+
+Everything lands in `./bids_data/` (gitignored) and is never re-downloaded. Set
+`CML_BIDS_CACHE` to keep the cache somewhere else — a shared drive, say, so a
+whole class does not each fetch their own copy.
+
+The subjects each notebook needs are named at the top of its data-loading cell.
+
+### What happens when you run a notebook
+
+The first data cell calls `get_bids_root(...)`, which **asks you where to read
+from** rather than deciding for you:
+
+```
+Where should this notebook read FR1 data from?
+  [1] the lab cluster   /data/LTP_BIDS/FR1   (detected)
+  [2] OpenNeuro ds004789    (downloads to bids_data/ds004789)
+Choice [1]:
 ```
 
-Files are cached in `./bids_data/` (gitignored), so a notebook only downloads
-each file once. Set `CML_BIDS_CACHE` to put the cache somewhere else.
+Option [1] only appears when the cluster copy is actually there. If you choose
+OpenNeuro, it works out exactly which files are missing and asks before fetching:
 
-**Behavioural data is small** — a few hundred KB per session — so the behavioural
-notebooks cost almost nothing to run. **The recordings are large** (300–700 MB per
-session), so they are skipped unless you ask for them:
-
-```python
-root = openneuro_root("FR1", subject="R1111M", session=0,
-                      include_timeseries=True, acquisition="monopolar")
+```
+OpenNeuro ds004789 (FR1) — need 2 file(s), 600.1 MB to download.
+  destination: bids_data/ds004789
+Download 600.1 MB? [y/N]:
 ```
 
-You can also explore a dataset before downloading anything:
+Nothing is ever downloaded without you saying yes, and if you already have the
+files it does not ask at all. If you pre-downloaded with the commands above, the
+notebook finds them and moves on.
+
+For non-interactive runs (scripted execution, `nbconvert`, CI) answer in advance
+with environment variables — without them, a run that would need to download
+stops with an error rather than quietly pulling gigabytes:
+
+    export CML_DATA_SOURCE=openneuro   # or: rhino
+    export CML_AUTO_APPROVE=1
+
+### Exploring a dataset from Python
 
 ```python
 from cml_data import available_subjects, available_tasks
 available_subjects("ltpFR2")          # 364 PEERS subjects
 available_tasks("ltpFR2", "LTP093")   # ['ltpFR', 'ltpFR2']
 ```
-
-Or from the command line:
-
-    python cml_data.py FR1 --list-subjects
-    python cml_data.py FR1 --subject R1111M --session 0 --eeg --acq monopolar
 
 | Task | OpenNeuro | Type |
 |---|---|---|

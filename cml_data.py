@@ -222,10 +222,37 @@ def openneuro_root(
     -------
     Path to a local directory laid out as valid BIDS.
     """
+    root, todo = plan_download(task, subject=subject, session=session,
+                               include_timeseries=include_timeseries,
+                               acquisition=acquisition, datatype=datatype,
+                               cache=cache)
+    root.mkdir(parents=True, exist_ok=True)
+    if todo and not quiet:
+        total = sum(s for _, s in todo)
+        print(f"{dataset_of(task)} ({_canonical_task(task)}): fetching "
+              f"{len(todo)} file(s), {_human(total)} -> {root}")
+    for key, size in todo:
+        _download(key, root / key.split("/", 1)[1], size, quiet)
+    return root
+
+
+def plan_download(
+    task: str,
+    subject: Optional[Union[str, Sequence[str]]] = None,
+    session: Optional[Union[int, str, Sequence]] = None,
+    include_timeseries: bool = False,
+    acquisition: Optional[str] = None,
+    datatype: Optional[str] = None,
+    cache: Optional[Union[str, Path]] = None,
+) -> tuple:
+    """Work out what would be downloaded, without downloading anything.
+
+    Returns ``(root, todo)`` where `todo` is a list of ``(key, size)`` for files
+    not already cached. Used to show the download size before asking permission.
+    """
     task = _canonical_task(task)
     ds = dataset_of(task)
     root = Path(cache) if cache else cache_dir() / ds
-    root.mkdir(parents=True, exist_ok=True)
 
     wanted: List[tuple] = []
 
@@ -268,15 +295,123 @@ def openneuro_root(
                 f"Use available_subjects({task!r}) to list valid subjects."
             )
 
-    todo = [(k, s) for k, s in wanted
-            if not (root / k.split("/", 1)[1]).exists()]
-    if todo and not quiet:
-        total = sum(s for _, s in todo)
-        print(f"{ds} ({task}): fetching {len(todo)} file(s), {_human(total)} "
-              f"-> {root}")
-    for key, size in todo:
-        _download(key, root / key.split("/", 1)[1], size, quiet)
+    seen, todo = set(), []
+    for key, size in wanted:
+        if key in seen:
+            continue
+        seen.add(key)
+        if not (root / key.split("/", 1)[1]).exists():
+            todo.append((key, size))
+    return root, todo
 
+
+# --------------------------------------------------------------------------- #
+# interactive entry point used by the notebooks
+# --------------------------------------------------------------------------- #
+
+#: Where each dataset lives on the lab cluster, for people working on rhino.
+RHINO_ROOTS = {
+    "ds004789": "/data/LTP_BIDS/FR1",
+    "ds004809": "/data/LTP_BIDS/catFR1",
+    "ds004395": "/data/LTP_BIDS",
+    "ds004706": "/data/LTP_BIDS",
+}
+
+
+def _prompt(question: str, default: str) -> Optional[str]:
+    """Ask the user; return None if there is no one to ask."""
+    try:
+        answer = input(question).strip()
+    except Exception:          # nbconvert, cron, piped stdin, ...
+        return None
+    return answer or default
+
+
+def get_bids_root(
+    task: str,
+    subject: Optional[Union[str, Sequence[str]]] = None,
+    session: Optional[Union[int, str, Sequence]] = None,
+    include_timeseries: bool = False,
+    acquisition: Optional[str] = None,
+    datatype: Optional[str] = None,
+    rhino_root: Optional[Union[str, Path]] = None,
+) -> Path:
+    """Return a BIDS root, asking where the data should come from.
+
+    Offers the rhino copy when it is present, otherwise downloads from OpenNeuro
+    — showing how much it is about to fetch and asking before it starts. Files
+    already cached are never re-downloaded, and you are only asked when there is
+    actually something to fetch.
+
+    Non-interactive runs (nbconvert, scripts) must choose in advance:
+
+        CML_DATA_SOURCE=rhino|openneuro   skip the "where from?" question
+        CML_AUTO_APPROVE=1                skip the download confirmation
+    """
+    task = _canonical_task(task)
+    ds = dataset_of(task)
+    rhino = Path(rhino_root) if rhino_root else Path(RHINO_ROOTS.get(ds, ""))
+    have_rhino = str(rhino) != "." and rhino.exists()
+
+    source = os.environ.get("CML_DATA_SOURCE", "").strip().lower()
+    if source not in ("rhino", "openneuro"):
+        if have_rhino:
+            print(f"Where should this notebook read {task} data from?")
+            print(f"  [1] the lab cluster   {rhino}   (detected)")
+            print(f"  [2] OpenNeuro {ds}    (downloads to {cache_dir() / ds})")
+            choice = _prompt("Choice [1]: ", "1")
+            if choice is None:
+                raise RuntimeError(
+                    "Cannot ask which data source to use in a non-interactive "
+                    "run. Set CML_DATA_SOURCE=rhino or =openneuro."
+                )
+            source = "rhino" if choice.startswith("1") else "openneuro"
+        else:
+            source = "openneuro"
+
+    if source == "rhino":
+        if not have_rhino:
+            raise FileNotFoundError(
+                f"{rhino} not found — you are probably not on the cluster. "
+                f"Set CML_DATA_SOURCE=openneuro to download instead."
+            )
+        return rhino
+
+    root, todo = plan_download(task, subject=subject, session=session,
+                               include_timeseries=include_timeseries,
+                               acquisition=acquisition, datatype=datatype)
+    if not todo:
+        print(f"{ds} ({task}): already downloaded -> {root}")
+        return root
+
+    total = sum(s for _, s in todo)
+    print(f"\nOpenNeuro {ds} ({task}) — need {len(todo)} file(s), "
+          f"{_human(total)} to download.")
+    print(f"  destination: {root}")
+    if total > 100 << 20:
+        print("  (this is the actual EEG recording; it is cached afterwards, "
+              "so you only pay this once)")
+
+    if not os.environ.get("CML_AUTO_APPROVE"):
+        answer = _prompt(f"Download {_human(total)}? [y/N]: ", "n")
+        if answer is None:
+            raise RuntimeError(
+                f"Need to download {_human(total)} but cannot ask for approval "
+                f"in a non-interactive run. Set CML_AUTO_APPROVE=1 to allow it, "
+                f"or pre-download with:\n"
+                f"    python cml_data.py {task}"
+                + (f" --subject {subject}" if isinstance(subject, str) else "")
+                + (" --eeg" if include_timeseries else "")
+            )
+        if not answer.lower().startswith("y"):
+            raise RuntimeError(
+                "Download declined. Re-run this cell and answer 'y', or fetch "
+                "the data yourself with cml_data.py (see the README)."
+            )
+
+    root.mkdir(parents=True, exist_ok=True)
+    for key, size in todo:
+        _download(key, root / key.split("/", 1)[1], size, quiet=False)
     return root
 
 
