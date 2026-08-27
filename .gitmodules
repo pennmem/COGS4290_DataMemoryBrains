@@ -1,3 +1,4 @@
 [submodule "dependencies/bidsreader"]
 	path = dependencies/bidsreader
 	url = https://github.com/pennmem/bidsreader.git
+	ignore = dirty
