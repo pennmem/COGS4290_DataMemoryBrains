@@ -7,6 +7,7 @@ Anaconda3-*.sh
 __pycache__/
 *.py[cod]
 
+
 # Jupyter
 .ipynb_checkpoints/
 .virtual_documents/
