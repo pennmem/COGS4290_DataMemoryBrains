@@ -33,7 +33,8 @@ from xml.etree import ElementTree
 from typing import Iterable, List, Optional, Sequence, Union
 
 __all__ = ["openneuro_root", "get_bids_root", "dataset_root", "plan_download",
-           "available_subjects", "available_tasks", "DATASETS", "dataset_of"]
+           "available_subjects", "available_tasks", "session_index",
+           "DATASETS", "dataset_of"]
 
 S3 = "https://s3.amazonaws.com/openneuro.org"
 
@@ -316,6 +317,25 @@ RHINO_ROOTS = {
     "ds004395": "/data/LTP_BIDS",
     "ds004706": "/data/LTP_BIDS",
 }
+
+
+def session_index(task: str) -> List[tuple]:
+    """Every (subject, session) that exists for `task`, straight from OpenNeuro.
+
+    Answers "what sessions were run?" without downloading anything. A local
+    directory scan cannot answer that on a partial cache -- it only sees what
+    has already been fetched.
+    """
+    task = _canonical_task(task)
+    ds = dataset_of(task)
+    pat = re.compile(rf"sub-([^/_]+)/ses-([^/_]+)/.*task-{re.escape(task)}",
+                     re.IGNORECASE)
+    pairs = set()
+    for key, _ in _s3_list(f"{ds}/"):
+        m = pat.search(key)
+        if m:
+            pairs.add((m.group(1), m.group(2)))
+    return sorted(pairs)
 
 
 def dataset_root(task: str) -> Path:
