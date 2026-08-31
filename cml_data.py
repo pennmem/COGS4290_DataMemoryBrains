@@ -28,6 +28,7 @@ import re
 import sys
 import urllib.parse
 import urllib.request
+from functools import lru_cache
 from pathlib import Path
 from xml.etree import ElementTree
 from typing import Iterable, List, Optional, Sequence, Union
@@ -322,7 +323,8 @@ RHINO_ROOTS = {
 }
 
 
-def session_index(task: str) -> List[tuple]:
+@lru_cache(maxsize=None)
+def session_index(task: str) -> tuple:
     """Every (subject, session) that exists for `task`, straight from OpenNeuro.
 
     Answers "what sessions were run?" without downloading anything. A local
@@ -338,7 +340,9 @@ def session_index(task: str) -> List[tuple]:
         m = pat.search(key)
         if m:
             pairs.add((m.group(1), m.group(2)))
-    return sorted(pairs)
+    # tuple + lru_cache: listing a whole dataset takes ~10 s and several cells
+    # ask for the same index.
+    return tuple(sorted(pairs))
 
 
 def dataset_root(task: str) -> Path:
