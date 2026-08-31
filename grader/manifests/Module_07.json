@@ -10,21 +10,24 @@
       "question": "1.1",
       "role": "value",
       "type": "scalar",
-      "student_hint": "number of R1111M contacts whose ind.region label contains 'temporal'"
+      "student_hint": "number of R1111M contacts whose ind.region label contains 'temporal'",
+      "solution_expr": "int(temporal_mask.sum())"
     },
     {
       "key": "Q1.2_left_hemisphere",
       "question": "1.2",
       "role": "value",
       "type": "scalar",
-      "student_hint": "count of R1111M contacts on the left hemisphere"
+      "student_hint": "count of R1111M contacts on the left hemisphere",
+      "solution_expr": "int(hem_counts.get('L', 0))"
     },
     {
       "key": "Q1.2_right_hemisphere",
       "question": "1.2",
       "role": "value",
       "type": "scalar",
-      "student_hint": "count of R1111M contacts on the right hemisphere"
+      "student_hint": "count of R1111M contacts on the right hemisphere",
+      "solution_expr": "int(hem_counts.get('R', 0))"
     },
     {
       "key": "Q2.1_times_ms",
@@ -32,7 +35,8 @@
       "role": "plot",
       "type": "array",
       "shape_hint": "(2001,)",
-      "student_hint": "x-axis: time relative to word onset in ms (-400..1600)"
+      "student_hint": "x-axis: time relative to word onset in ms (-400..1600)",
+      "solution_expr": "times_ms"
     },
     {
       "key": "Q2.1_erp_recalled",
@@ -40,7 +44,8 @@
       "role": "plot",
       "type": "array",
       "shape_hint": "(2001,)",
-      "student_hint": "mean z-scored ERP across subsequently-recalled trials (recalled trace)"
+      "student_hint": "mean z-scored ERP across subsequently-recalled trials (recalled trace)",
+      "solution_expr": "z_rec.mean(axis=0)"
     },
     {
       "key": "Q2.1_erp_not_recalled",
@@ -48,21 +53,24 @@
       "role": "plot",
       "type": "array",
       "shape_hint": "(2001,)",
-      "student_hint": "mean z-scored ERP across not-recalled trials (not-recalled trace)"
+      "student_hint": "mean z-scored ERP across not-recalled trials (not-recalled trace)",
+      "solution_expr": "z_nrec.mean(axis=0)"
     },
     {
       "key": "Q2.2_n_sig_uncorrected",
       "question": "2.2",
       "role": "value",
       "type": "scalar",
-      "student_hint": "number of time points with uncorrected Welch t-test p<0.05"
+      "student_hint": "number of time points with uncorrected Welch t-test p<0.05",
+      "solution_expr": "n_sig_uncorrected"
     },
     {
       "key": "Q2.2_n_sig_fdr",
       "question": "2.2",
       "role": "value",
       "type": "scalar",
-      "student_hint": "number of time points significant after Benjamini-Hochberg FDR (q<0.05)"
+      "student_hint": "number of time points significant after Benjamini-Hochberg FDR (q<0.05)",
+      "solution_expr": "n_sig_fdr"
     }
   ]
 }

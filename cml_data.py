@@ -32,8 +32,8 @@ from pathlib import Path
 from xml.etree import ElementTree
 from typing import Iterable, List, Optional, Sequence, Union
 
-__all__ = ["openneuro_root", "available_subjects", "available_tasks",
-           "DATASETS", "dataset_of"]
+__all__ = ["openneuro_root", "get_bids_root", "dataset_root", "plan_download",
+           "available_subjects", "available_tasks", "DATASETS", "dataset_of"]
 
 S3 = "https://s3.amazonaws.com/openneuro.org"
 
@@ -316,6 +316,20 @@ RHINO_ROOTS = {
     "ds004395": "/data/LTP_BIDS",
     "ds004706": "/data/LTP_BIDS",
 }
+
+
+def dataset_root(task: str) -> Path:
+    """Where `task` lives, without touching the network.
+
+    Returns the lab-cluster path when it exists, otherwise the local OpenNeuro
+    cache directory for that dataset. Use this for module-level constants; use
+    ``get_bids_root`` when you actually need the files present.
+    """
+    ds = dataset_of(task)
+    rhino = Path(RHINO_ROOTS.get(ds, ""))
+    if str(rhino) != "." and rhino.exists():
+        return rhino
+    return cache_dir() / ds
 
 
 def _prompt(question: str, default: str) -> Optional[str]:

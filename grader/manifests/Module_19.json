@@ -11,7 +11,8 @@
       "role": "plot",
       "type": "array",
       "shape_hint": "(200,)",
-      "student_hint": "shared FPR axis for the nested-CV average ROC (linspace 0..1, 200 pts)"
+      "student_hint": "shared FPR axis for the nested-CV average ROC (linspace 0..1, 200 pts)",
+      "solution_expr": "avg_fpr"
     },
     {
       "key": "Q1.1_avg_tpr",
@@ -19,7 +20,8 @@
       "role": "plot",
       "type": "array",
       "shape_hint": "(200,)",
-      "student_hint": "across-subject average ROC (mean interpolated TPR) for nested-CV-tuned models"
+      "student_hint": "across-subject average ROC (mean interpolated TPR) for nested-CV-tuned models",
+      "solution_expr": "avg_tpr"
     },
     {
       "key": "Q1.1_nest_aucs",
@@ -27,14 +29,16 @@
       "role": "plot",
       "type": "array",
       "shape_hint": "(n_subjects,)",
-      "student_hint": "per-subject nested-CV outer-fold mean AUC (hyperparameter-tuned)"
+      "student_hint": "per-subject nested-CV outer-fold mean AUC (hyperparameter-tuned)",
+      "solution_expr": "nest_aucs"
     },
     {
       "key": "Q1.1_mean_nested_auc",
       "question": "1.1",
       "role": "value",
       "type": "scalar",
-      "student_hint": "between-subject mean nested-CV AUC"
+      "student_hint": "between-subject mean nested-CV AUC",
+      "solution_expr": "float(np.mean(nest_aucs))"
     },
     {
       "key": "Q2.1_auc_df",
@@ -46,7 +50,8 @@
         "AUC"
       ],
       "shape_hint": "(3*n_subjects, 2)",
-      "student_hint": "per-subject AUC by penalization scheme (Method in L2/L1/Elastic, AUC value)"
+      "student_hint": "per-subject AUC by penalization scheme (Method in L2/L1/Elastic, AUC value)",
+      "solution_expr": "auc_df"
     },
     {
       "key": "Q3.1_coefs_l2_sub0",
@@ -54,7 +59,8 @@
       "role": "plot",
       "type": "array",
       "shape_hint": "(n_folds*n_features,)",
-      "student_hint": "pooled L2 classifier coefficients (across outer folds) for the 1st subject"
+      "student_hint": "pooled L2 classifier coefficients (across outer folds) for the 1st subject",
+      "solution_expr": "np.concatenate([c.coef_ for c in nest_clfs[0]], axis=0).reshape(-1)"
     },
     {
       "key": "Q3.1_coefs_l1_sub0",
@@ -62,7 +68,8 @@
       "role": "plot",
       "type": "array",
       "shape_hint": "(n_folds*n_features,)",
-      "student_hint": "pooled L1/Lasso classifier coefficients (across outer folds) for the 1st subject (sparse)"
+      "student_hint": "pooled L1/Lasso classifier coefficients (across outer folds) for the 1st subject (sparse)",
+      "solution_expr": "np.concatenate([c.coef_ for c in lasso_clfs[0]], axis=0).reshape(-1)"
     },
     {
       "key": "Q3.1_coefs_elastic_sub0",
@@ -70,7 +77,8 @@
       "role": "plot",
       "type": "array",
       "shape_hint": "(n_folds*n_features,)",
-      "student_hint": "pooled elastic-net classifier coefficients (across outer folds) for the 1st subject"
+      "student_hint": "pooled elastic-net classifier coefficients (across outer folds) for the 1st subject",
+      "solution_expr": "np.concatenate([c.coef_ for c in elast_clfs[0]], axis=0).reshape(-1)"
     },
     {
       "key": "Q4.1_no_z_aucs",
@@ -78,7 +86,8 @@
       "role": "plot",
       "type": "array",
       "shape_hint": "(n_subjects,)",
-      "student_hint": "per-subject nested-CV AUC using raw (non-z-scored) features"
+      "student_hint": "per-subject nested-CV AUC using raw (non-z-scored) features",
+      "solution_expr": "no_z_aucs"
     },
     {
       "key": "Q4.1_avg_tpr_no_z",
@@ -86,21 +95,24 @@
       "role": "plot",
       "type": "array",
       "shape_hint": "(200,)",
-      "student_hint": "across-subject average ROC for non-z-scored nested-CV models"
+      "student_hint": "across-subject average ROC for non-z-scored nested-CV models",
+      "solution_expr": "avg_tpr"
     },
     {
       "key": "Q4.1_mean_auc_z",
       "question": "4.1",
       "role": "value",
       "type": "scalar",
-      "student_hint": "between-subject mean AUC WITH z-scored features"
+      "student_hint": "between-subject mean AUC WITH z-scored features",
+      "solution_expr": "float(np.mean(nest_aucs))"
     },
     {
       "key": "Q4.1_mean_auc_no_z",
       "question": "4.1",
       "role": "value",
       "type": "scalar",
-      "student_hint": "between-subject mean AUC WITHOUT z-scored features"
+      "student_hint": "between-subject mean AUC WITHOUT z-scored features",
+      "solution_expr": "float(np.mean(no_z_aucs))"
     }
   ]
 }

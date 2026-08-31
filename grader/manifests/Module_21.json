@@ -11,7 +11,8 @@
       "role": "plot",
       "type": "array",
       "shape_hint": "(11, 11)",
-      "student_hint": "within-list serial-position RSA heatmap: list-centered z-transformed correlations, earlier item (rows) x later item (cols); save the 2-D array under the heatmap, not the image"
+      "student_hint": "within-list serial-position RSA heatmap: list-centered z-transformed correlations, earlier item (rows) x later item (cols); save the 2-D array under the heatmap, not the image",
+      "solution_expr": "within_list_WORD_rsa_serialpos_mat.values"
     },
     {
       "key": "Q1.5_serialpos_dist_rsa",
@@ -23,7 +24,8 @@
         "serialpos_dist",
         "corr_z_list_adj"
       ],
-      "student_hint": "per-subject mean list-centered z-correlation as a function of study distance (serialpos_dist) \u2014 the Manning-plot point heights"
+      "student_hint": "per-subject mean list-centered z-correlation as a function of study distance (serialpos_dist) \u2014 the Manning-plot point heights",
+      "solution_expr": "within_list_WORD_rsa_df.groupby(['subject_WORD','session_WORD','list_WORD','serialpos_dist'],as_index=False).agg({'corr_z_list_adj':'mean'}).groupby(['subject_WORD','session_WORD','serialpos_dist'],as_index=False).agg({'corr_z_list_adj':'mean'}).groupby(['subject_WORD','serialpos_dist'],as_index=False).agg({'corr_z_list_adj':'mean'})"
     },
     {
       "key": "Q1.6_serialpos_dist_category_rsa",
@@ -36,7 +38,8 @@
         "same_category",
         "corr_z_list_adj"
       ],
-      "student_hint": "per-subject mean list-centered z-correlation by study distance (serialpos_dist) and same_category (hue) \u2014 the point-plot heights"
+      "student_hint": "per-subject mean list-centered z-correlation by study distance (serialpos_dist) and same_category (hue) \u2014 the point-plot heights",
+      "solution_expr": "within_list_WORD_rsa_subject_df"
     },
     {
       "key": "Q2.3_serialpos_lag_rsa",
@@ -48,7 +51,8 @@
         "serialpos_lag",
         "corr_z_outpos_adj"
       ],
-      "student_hint": "per-subject retrieval-centered z-correlation by serialpos_lag, restricted to lags -5..5 \u2014 the plotted point heights"
+      "student_hint": "per-subject retrieval-centered z-correlation by serialpos_lag, restricted to lags -5..5 \u2014 the plotted point heights",
+      "solution_expr": "within_list_correct_REC_WORD_rsa_subject_df.query('serialpos_lag <= 5 and serialpos_lag >= -5')"
     },
     {
       "key": "Q2.4_serialpos_lag_category_rsa",
@@ -61,7 +65,8 @@
         "serialpos_lag",
         "corr_z_outpos_adj"
       ],
-      "student_hint": "per-subject retrieval-centered z-correlation by serialpos_lag and same_category (hue), lags -5..5 \u2014 the plotted point heights"
+      "student_hint": "per-subject retrieval-centered z-correlation by serialpos_lag and same_category (hue), lags -5..5 \u2014 the plotted point heights",
+      "solution_expr": "within_list_REC_WORD_rsa_subject_df.query('serialpos_lag <= 5 and serialpos_lag >= -5')"
     },
     {
       "key": "Q3.1_study_dist_recall_category_rsa",
@@ -75,7 +80,8 @@
         "pair_recalled",
         "corr_z_list_adj"
       ],
-      "student_hint": "per-subject mean list-centered z-correlation by study distance (serialpos_dist), same_category (col facet), and pair_recalled (hue) \u2014 the point-plot heights"
+      "student_hint": "per-subject mean list-centered z-correlation by study distance (serialpos_dist), same_category (col facet), and pair_recalled (hue) \u2014 the point-plot heights",
+      "solution_expr": "within_list_WORD_rsa_subject_df"
     }
   ]
 }
