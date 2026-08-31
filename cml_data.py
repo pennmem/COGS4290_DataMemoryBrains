@@ -257,11 +257,14 @@ def plan_download(
 
     wanted: List[tuple] = []
 
-    # dataset-level files, needed by mne-bids to recognise the root
-    for key, size in _s3_list(f"{ds}/"):
-        name = key.split("/")[-1]
-        if key.count("/") == 1 and name in _ROOT_FILES:
-            wanted.append((key, size))
+    # Dataset-level files, needed by mne-bids to recognise the root. Listing the
+    # whole dataset prefix to find four filenames costs ~10 s on a big dataset,
+    # so only look when at least one is actually missing.
+    if any(not (root / n).exists() for n in _ROOT_FILES):
+        for key, size in _s3_list(f"{ds}/"):
+            name = key.split("/")[-1]
+            if key.count("/") == 1 and name in _ROOT_FILES:
+                wanted.append((key, size))
 
     subjects = ([subject] if isinstance(subject, str)
                 else list(subject) if subject is not None else [])
@@ -352,6 +355,41 @@ def dataset_root(task: str) -> Path:
     return cache_dir() / ds
 
 
+def _have_locally(root: Path, task: str, subject, session,
+                  include_timeseries: bool, acquisition: Optional[str]) -> bool:
+    """True if every requested subject/session already has files on disk.
+
+    Purely local; makes no network call. Conservative -- returns False whenever
+    it cannot prove the data is present, so the worst case is a needless listing.
+    """
+    if subject is None or not root.is_dir():
+        return False
+    if any(not (root / n).exists() for n in ("dataset_description.json",)):
+        return False
+    subjects = [subject] if isinstance(subject, str) else list(subject)
+    sessions = ([session] if isinstance(session, (int, str))
+                else list(session) if session is not None else None)
+    if sessions is None:
+        return False          # "all sessions" -- cannot verify without listing
+    for sub in subjects:
+        sub = str(sub).replace("sub-", "")
+        for ses in sessions:
+            ses = str(ses).replace("ses-", "")
+            d = root / f"sub-{sub}" / f"ses-{ses}"
+            if not d.is_dir():
+                return False
+            found = list(d.rglob(f"*task-{task}*"))
+            if not found:
+                return False
+            if include_timeseries:
+                bulk = [f for f in found if f.name.endswith(_TIMESERIES_EXT)]
+                if acquisition:
+                    bulk = [f for f in bulk if f"acq-{acquisition}" in f.name]
+                if not bulk:
+                    return False
+    return True
+
+
 def _prompt(question: str, default: str) -> Optional[str]:
     """Ask the user; return None if there is no one to ask."""
     try:
@@ -411,11 +449,17 @@ def get_bids_root(
             )
         return rhino
 
+    # Fast path: if the requested sessions are already on disk, do not touch the
+    # network at all. Without this, a loop over N sessions pays a full S3
+    # listing per session even when everything is cached.
+    if _have_locally(dataset_root(task), task, subject, session,
+                     include_timeseries, acquisition):
+        return dataset_root(task)
+
     root, todo = plan_download(task, subject=subject, session=session,
                                include_timeseries=include_timeseries,
                                acquisition=acquisition, datatype=datatype)
     if not todo:
-        print(f"{ds} ({task}): already downloaded -> {root}")
         return root
 
     total = sum(s for _, s in todo)
