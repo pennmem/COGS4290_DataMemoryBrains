@@ -34,8 +34,8 @@
       "question": "2.1",
       "role": "plot",
       "type": "array",
-      "shape_hint": "(2001,)",
-      "student_hint": "x-axis: time relative to word onset in ms (-400..1600)",
+      "shape_hint": "(1001,)",
+      "student_hint": "x-axis: time relative to word onset in ms (-400..1600 ms, 500 Hz -> 1001 points)",
       "solution_expr": "times_ms"
     },
     {
@@ -43,7 +43,7 @@
       "question": "2.1",
       "role": "plot",
       "type": "array",
-      "shape_hint": "(2001,)",
+      "shape_hint": "(1001,)",
       "student_hint": "mean z-scored ERP across subsequently-recalled trials (recalled trace)",
       "solution_expr": "z_rec.mean(axis=0)"
     },
@@ -52,7 +52,7 @@
       "question": "2.1",
       "role": "plot",
       "type": "array",
-      "shape_hint": "(2001,)",
+      "shape_hint": "(1001,)",
       "student_hint": "mean z-scored ERP across not-recalled trials (not-recalled trace)",
       "solution_expr": "z_nrec.mean(axis=0)"
     },
