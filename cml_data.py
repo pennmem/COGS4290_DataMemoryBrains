@@ -34,7 +34,7 @@ from xml.etree import ElementTree
 from typing import Iterable, List, Optional, Sequence, Union
 
 __all__ = ["openneuro_root", "get_bids_root", "dataset_root", "plan_download",
-           "available_subjects", "available_tasks", "session_index",
+           "available_subjects", "available_tasks", "session_index", "prefetch", "approve_downloads",
            "DATASETS", "dataset_of"]
 
 S3 = "https://s3.amazonaws.com/openneuro.org"
@@ -314,6 +314,17 @@ def plan_download(
 # interactive entry point used by the notebooks
 # --------------------------------------------------------------------------- #
 
+#: Set once the user approves downloading in this process. A single analysis can
+#: touch thousands of sessions; asking per session is unusable.
+_SESSION_APPROVED = False
+
+
+def approve_downloads(yes: bool = True) -> None:
+    """Pre-approve (or revoke) downloads for the rest of this process."""
+    global _SESSION_APPROVED
+    _SESSION_APPROVED = bool(yes)
+
+
 #: Where each dataset lives on the lab cluster, for people working on rhino.
 RHINO_ROOTS = {
     "ds004789": "/data/LTP_BIDS/FR1",
@@ -343,6 +354,74 @@ def session_index(task: str) -> tuple:
     # tuple + lru_cache: listing a whole dataset takes ~10 s and several cells
     # ask for the same index.
     return tuple(sorted(pairs))
+
+
+def prefetch(task: str, subjects=None, sessions=None, workers: int = 12,
+             include_timeseries: bool = False, acquisition=None) -> Path:
+    """Download many sessions concurrently.
+
+    The notebooks fetch one session at a time, which is fine for a handful but
+    slow for a multi-subject analysis (~1.2 s each, sequentially). This grabs
+    the whole set in parallel instead. Safe to re-run: cached files are skipped.
+
+        python cml_data.py ltpFR2 --prefetch
+    """
+    task = _canonical_task(task)
+    ds = dataset_of(task)
+    root = cache_dir() / ds
+    root.mkdir(parents=True, exist_ok=True)
+
+    pairs = session_index(task)
+    if subjects is not None:
+        want = {str(s).replace("sub-", "") for s in subjects}
+        pairs = [p for p in pairs if p[0] in want]
+    if sessions is not None:
+        want_s = {str(s).replace("ses-", "") for s in sessions}
+        pairs = [p for p in pairs if p[1] in want_s]
+
+    todo = []
+    seen = set()
+    for key, size in _s3_list(f"{ds}/"):
+        name = key.split("/")[-1]
+        if key.count("/") == 1 and name in _ROOT_FILES:
+            if not (root / name).exists():
+                todo.append((key, size))
+            continue
+        m = re.match(rf"{re.escape(ds)}/sub-([^/]+)/ses-([^/]+)/", key)
+        if not m or (m.group(1), m.group(2)) not in set(pairs):
+            continue
+        tm = re.search(r"task-([A-Za-z0-9]+)", name)
+        if tm and tm.group(1) != task:
+            continue
+        if name.endswith(_TIMESERIES_EXT):
+            if not include_timeseries:
+                continue
+            if acquisition and f"acq-{acquisition}" not in name:
+                continue
+        rel = key.split("/", 1)[1]
+        if key not in seen and not (root / rel).exists():
+            seen.add(key)
+            todo.append((key, size))
+
+    if not todo:
+        print(f"{ds} ({task}): {len(pairs)} session(s) already cached")
+        return root
+    total = sum(sz for _, sz in todo)
+    print(f"{ds} ({task}): downloading {len(todo)} files ({_human(total)}) "
+          f"for {len(pairs)} sessions, {workers} at a time")
+
+    from concurrent.futures import ThreadPoolExecutor
+    done = [0]
+    def grab(item):
+        key, size = item
+        _download(key, root / key.split("/", 1)[1], size, quiet=True)
+        done[0] += 1
+        if done[0] % 100 == 0:
+            print(f"  {done[0]}/{len(todo)}", flush=True)
+    with ThreadPoolExecutor(max_workers=workers) as pool:
+        list(pool.map(grab, todo))
+    print(f"  done: {len(todo)} files")
+    return root
 
 
 def dataset_root(task: str) -> Path:
@@ -424,6 +503,7 @@ def get_bids_root(
         CML_DATA_SOURCE=rhino|openneuro   skip the "where from?" question
         CML_AUTO_APPROVE=1                skip the download confirmation
     """
+    global _SESSION_APPROVED
     task = _canonical_task(task)
     ds = dataset_of(task)
     rhino = Path(rhino_root) if rhino_root else Path(RHINO_ROOTS.get(ds, ""))
@@ -467,33 +547,36 @@ def get_bids_root(
         return root
 
     total = sum(s for _, s in todo)
-    print(f"\nOpenNeuro {ds} ({task}) — need {len(todo)} file(s), "
-          f"{_human(total)} to download.")
-    print(f"  destination: {root}")
-    if total > 100 << 20:
-        print("  (this is the actual EEG recording; it is cached afterwards, "
-              "so you only pay this once)")
+    first_time = not (_SESSION_APPROVED or os.environ.get("CML_AUTO_APPROVE"))
+    if first_time or total > 100 << 20:
+        print(f"\nOpenNeuro {ds} ({task}) — need {len(todo)} file(s), "
+              f"{_human(total)} to download.")
+        print(f"  destination: {root}")
+        if total > 100 << 20:
+            print("  (this is the actual EEG recording; it is cached "
+                  "afterwards, so you only pay this once)")
 
-    if not os.environ.get("CML_AUTO_APPROVE"):
+    if not (_SESSION_APPROVED or os.environ.get("CML_AUTO_APPROVE")):
+        print("  Approving once covers every download for the rest of this "
+              "session (until the kernel restarts).")
         answer = _prompt(f"Download {_human(total)}? [y/N]: ", "n")
         if answer is None:
             raise RuntimeError(
                 f"Need to download {_human(total)} but cannot ask for approval "
                 f"in a non-interactive run. Set CML_AUTO_APPROVE=1 to allow it, "
                 f"or pre-download with:\n"
-                f"    python cml_data.py {task}"
-                + (f" --subject {subject}" if isinstance(subject, str) else "")
-                + (" --eeg" if include_timeseries else "")
+                f"    python cml_data.py {task} --prefetch"
             )
         if not answer.lower().startswith("y"):
             raise RuntimeError(
                 "Download declined. Re-run this cell and answer 'y', or fetch "
                 "the data yourself with cml_data.py (see the README)."
             )
+        _SESSION_APPROVED = True   # ask once per run, not once per session-file
 
     root.mkdir(parents=True, exist_ok=True)
     for key, size in todo:
-        _download(key, root / key.split("/", 1)[1], size, quiet=False)
+        _download(key, root / key.split("/", 1)[1], size, quiet=True)
     return root
 
 
@@ -506,8 +589,13 @@ if __name__ == "__main__":
     p.add_argument("--eeg", action="store_true", help="also download recordings")
     p.add_argument("--acq", default=None, choices=[None, "bipolar", "monopolar"])
     p.add_argument("--list-subjects", action="store_true")
+    p.add_argument("--prefetch", action="store_true",
+                   help="download all sessions for this task, in parallel")
     a = p.parse_args()
-    if a.list_subjects:
+    if a.prefetch:
+        prefetch(a.task, subjects=a.subject, sessions=a.session,
+                 include_timeseries=a.eeg, acquisition=a.acq)
+    elif a.list_subjects:
         subs = available_subjects(a.task)
         print(f"{len(subs)} subjects in {dataset_of(a.task)}:")
         print(", ".join(subs))

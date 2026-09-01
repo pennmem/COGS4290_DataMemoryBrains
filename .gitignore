@@ -21,3 +21,6 @@ bids_data/
 
 # OS cruft
 .DS_Store
+
+# Accidental nested clone of this repo (not deleted, just untracked)
+COGS4290_DataMemoryBrains/
