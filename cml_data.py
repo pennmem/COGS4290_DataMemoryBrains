@@ -34,7 +34,7 @@ from xml.etree import ElementTree
 from typing import Iterable, List, Optional, Sequence, Union
 
 __all__ = ["openneuro_root", "get_bids_root", "dataset_root", "plan_download",
-           "available_subjects", "available_tasks", "session_index", "prefetch", "approve_downloads",
+           "available_subjects", "available_tasks", "session_index", "session_dataframe", "prefetch", "approve_downloads",
            "DATASETS", "dataset_of"]
 
 S3 = "https://s3.amazonaws.com/openneuro.org"
@@ -422,6 +422,28 @@ def prefetch(task: str, subjects=None, sessions=None, workers: int = 12,
         list(pool.map(grab, todo))
     print(f"  done: {len(todo)} files")
     return root
+
+
+def session_dataframe(task: str):
+    """Every (subject, session) for `task`, as a DataFrame.
+
+    The BIDS-standard way to ask "what sessions exist?" is to scan the study
+    folder. That only works when you have the *whole* study on disk, as on the
+    lab cluster. If you are working from downloaded data your folder holds only
+    what you have fetched so far, so a scan under-reports. This asks OpenNeuro
+    instead and always gives the full picture.
+
+        df = session_dataframe("VFFR")
+        len(df)                      # sessions run
+        df["subject"].nunique()      # subjects who ran at least one
+    """
+    import pandas as pd
+    task = _canonical_task(task)
+    pairs = session_index(task)
+    return pd.DataFrame({"subject": [s for s, _ in pairs],
+                         "task": [task] * len(pairs),
+                         "session": [e for _, e in pairs]}).sort_values(
+                             ["subject", "session"]).reset_index(drop=True)
 
 
 def dataset_root(task: str) -> Path:
