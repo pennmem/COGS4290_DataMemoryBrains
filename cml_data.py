@@ -594,7 +594,7 @@ def get_bids_root(
                 "Download declined. Re-run this cell and answer 'y', or fetch "
                 "the data yourself with cml_data.py (see the README)."
             )
-        _SESSION_APPROVED = True   # ask once per run, not once per session-file
+        _SESSION_APPROVED = True   
 
     root.mkdir(parents=True, exist_ok=True)
     for key, size in todo:
