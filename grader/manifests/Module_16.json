@@ -84,7 +84,7 @@
       "type": "array",
       "shape_hint": "(n_subjects,)",
       "student_hint": "per-subject AUC computed from predictions pooled across CV folds (the subjects'-AUC histogram)",
-      "solution_expr": "[roc_auc_score(ys[s], np.concatenate(preds[s])) for s in range(len(res_subs))]"
+      "solution_expr": "subj_aucs"
     },
     {
       "key": "Q3.1_mean_auc",
@@ -92,7 +92,7 @@
       "role": "value",
       "type": "scalar",
       "student_hint": "between-subject average of the pooled-fold AUCs",
-      "solution_expr": "float(np.mean([roc_auc_score(ys[s], np.concatenate(preds[s])) for s in range(len(res_subs))]))"
+      "solution_expr": "mean_auc"
     },
     {
       "key": "Q3.1_fpr_sub0",

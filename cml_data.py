@@ -35,7 +35,7 @@ from typing import Iterable, List, Optional, Sequence, Union
 
 __all__ = ["openneuro_root", "get_bids_root", "dataset_root", "plan_download",
            "available_subjects", "available_tasks", "session_index", "session_dataframe", "prefetch", "approve_downloads",
-           "DATASETS", "dataset_of"]
+           "DATASETS", "dataset_of", "INTRAC_SUBS", "INTRAC_SUBS_SMALL"]
 
 S3 = "https://s3.amazonaws.com/openneuro.org"
 
@@ -54,6 +54,20 @@ DATASETS = {
     "PEERS": "ds004395",     # alias: the whole PEERS collection
     "NICLS": "ds004706",
 }
+
+#: The intracranial (FR1) cohort used by every multi-subject EEG module from
+#: Module 10 onward. Every subject has at least three FR1 sessions on OpenNeuro,
+#: recall performance of at least 30%, and contacts in temporal cortex, frontal
+#: cortex and hippocampus, so the same list serves the spectral, regional-SME
+#: and classifier assignments. Sessions are numbered from 0.
+INTRAC_SUBS = ['R1060M', 'R1061T', 'R1065J', 'R1066P', 'R1092J',
+               'R1108J', 'R1111M', 'R1230J', 'R1236J', 'R1243T',
+               'R1292E', 'R1308T', 'R1334T', 'R1337E', 'R1341T',
+               'R1350D', 'R1377M', 'R1378T', 'R1395M', 'R1542J']
+
+#: The first few of the above -- enough to develop and test a pipeline on before
+#: running it over the whole cohort. Each session is 300-700 MB of EEG.
+INTRAC_SUBS_SMALL = INTRAC_SUBS[:3]
 
 #: Files at the top of a dataset that mne-bids expects to find.
 _ROOT_FILES = ("dataset_description.json", "participants.tsv",

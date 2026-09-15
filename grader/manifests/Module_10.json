@@ -38,7 +38,7 @@
       "role": "plot",
       "type": "array",
       "shape_hint": "(16,)",
-      "student_hint": "x-axis frequencies (16 log-spaced, 1..300 Hz) for the E53 spectra",
+      "student_hint": "x-axis frequencies (16 log-spaced, 1..300 Hz) for the Q2 spectra",
       "solution_expr": "freqs"
     },
     {
@@ -47,7 +47,7 @@
       "role": "plot",
       "type": "array",
       "shape_hint": "(3, 16)",
-      "student_hint": "recalled power spectra for the 3 subjects at electrode E53; plotted as np.log10(power) vs freq",
+      "student_hint": "recalled power spectra for the 3 subjects, averaged over all bipolar channels; plotted as np.log10(power) vs freq",
       "solution_expr": "rec_powers"
     },
     {
@@ -56,7 +56,7 @@
       "role": "plot",
       "type": "array",
       "shape_hint": "(3, 16)",
-      "student_hint": "non-recalled power spectra for the 3 subjects at electrode E53; plotted as np.log10(power) vs freq",
+      "student_hint": "non-recalled power spectra for the 3 subjects, averaged over all bipolar channels; plotted as np.log10(power) vs freq",
       "solution_expr": "nrec_powers"
     }
   ]

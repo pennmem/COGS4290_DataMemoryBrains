@@ -11,23 +11,41 @@ getting up to speed on the research done in Mike's lab.
 Our goal is to familiarize you with fundamental concepts in human memory and
 electrophysiology as well as with programming tools needed for the large-scale
 computing in these fields. The psychology and neuroscience at play in these
-analyses will be primarily covered in the course lectures. To that end, the
-course outline is as follows:
+analyses will be primarily covered in the course lectures.
 
-* Assignment 0: **Python, Numpy, Pandas, and Plotting** (Module 00)
-* Assignment 1: **Behavioral Analysis of Memory** (Module )
-* Assignment 2: **Inter-Response Times (IRTs), Lag Conditional Response Probabilities (Lag-CRP), and Prior List Intrusions (PLIs)** (Intro 2)
-* Assignment 3: **Electroencephalography (EEG), Event-Related Potentials (ERPs)** (Intro 3)
-* Assignment 4: **Inferential Statistics with ERPs** (Intro 4)
-* Assignment 5: **Signal Processing and Spectral Analysis** (Intro 5)
-* Assignment 6: **Inferences from Spectral Analysis** (Intro 6)
-* Assignment 7: **Spectral Subsequent Memory Effects (SMEs)** (Intro 6)
-* Assignment 8: **Machine_Learning, Logistic Regression** (Intro 9)
-* Assignment 9: **Hyperparameter Tuning and Nested Cross-Validation (CV)** (Intro 10)
-* Assignment 10: **Representational Similarity Analysis (RSA)** (Intro 11)
+The material is a sequence of numbered modules. Most come in pairs: an
+*introduction* notebook that teaches a tool or method on one subject, followed
+by an *assignment* notebook that applies it and is auto-graded (see
+[`grader/README.md`](grader/README.md)). Work through them in order.
 
-Each assignment assumes familiarity with the Introduction notebook material
-from the beginning through the listed number.
+| Module | Notebook | Type | What it covers |
+|---|---|---|---|
+| 00 | Python, Jupyter, Numpy, Pandas | assignment 0 | Python warm-up and plotting |
+| 01 | OpenBIDS | intro | how the lab's data are laid out (BIDS), `BIDSReader` |
+| 02 | Behavioral Analysis with BIDSReader | intro | events tables, `BehavioralHelpers.py` |
+| 03 | Behavioral Analysis of Memory | assignment 1 | recall probability, serial position curves |
+| 04 | Exceptions, IRT, Lag-CRP, PLI | intro | robust code; inter-response times, lag-CRP, prior-list intrusions |
+| 05 | IRT, Lag-CRP, PLI | assignment 2 | the analyses of Module 04 across a cohort |
+| 06 | EEG and ERPs | intro | loading intracranial EEG, event-related potentials |
+| 07 | EEG and ERPs | assignment 3 | electrode localisation, subsequent-memory ERPs, per-timepoint tests |
+| 08 | Univariate Statistics | intro (required) | t-tests, multiple comparisons, FDR |
+| 09 | Spectral Analysis | intro | Welch, Morlet wavelets, line noise, the 1/f spectrum |
+| 10 | Signal / Spectral Analysis | assignment 5 | power spectra for recalled vs non-recalled words; `SpectralHelpers.py` |
+| 11 | Simulation and Unit Testing | intro | simulate EEG with a known answer, write tests that fail on purpose |
+| 12 | Parallel Computing | intro | running one-session functions over a cohort in parallel |
+| 13 | RAM and File I/O | intro | predicting memory use, saving intermediate results |
+| 14 | Spectral Inferences and the SME | assignment 6 | 20-subject spectra with confidence bands, normalisation, regional SME, referencing |
+| 16 | Machine Learning | assignment 8 | logistic-regression classifiers of memory state, ROC/AUC |
+| 17 | Machine Learning | intro | scikit-learn, cross-validation |
+| 18 | Classifier Validation | intro | permutation tests, leakage |
+| 19 | Hyperparameters and Nested CV | assignment 9 | nested cross-validation, penalisation schemes |
+| 20 | Representational Similarity Analysis | intro | RSA theory and computation |
+| 21 | RSA | assignment 10 | encoding-retrieval similarity |
+| X, Y | Connectivity, Oscillation Detection | optional | further methods |
+
+Behavioral modules (01-05) use the scalp-EEG PEERS studies (`ltpFR`, `ltpFR2`,
+`VFFR`); every EEG module from 06 onward uses intracranial FR1 data. Module 10
+onward analyse the 20-subject cohort `cml_data.INTRAC_SUBS`.
 
 By the end of this course, you should be able to carry out EEG/iEEG/ECoG
 analyses, like computing spectral power and phase, and to compute statistics or
@@ -36,7 +54,7 @@ to apply machine learning models to those data.
 These notebooks prepare you for doing in-depth multi-subject analyses with
 electrophysiological data. Though this course assumes a basic knowledge of
 Python and command line tools, we have linked additional recommended resources
-at the top of **Introduction 0** for getting started with Python and common
+at the top of **Module 00** for getting started with Python and common
 data analysis tools. Though the externally linked supplemental material isn't
 strictly part of the course, we recommend reviewing it before proceeding to the
 materials included here unless you are confident in your experience with numpy,
@@ -46,10 +64,10 @@ you (or you want to brush up), please read through these resources!
 # Initial Setup
 
 To start working with any materials contained or linked here, you'll need to
-set up tools for writing and running Python code. If you are affiliated with
-the Computational Memory Lab and have access to Rhino, the CML computing
-cluster, you can skip down to the Getting started on Rhino section. Otherwise,
-you can follow the instructions below to set up python on your own computer.
+set up tools for writing and running Python code on your own computer. Members
+of the Computational Memory Lab can alternatively work on Rhino, the lab's
+computing cluster, when it is available; see *Working on Rhino* at the end of
+this section. Everything in these notebooks runs in either place.
 
 ## Command line access
 
@@ -57,137 +75,56 @@ All subsequent stages of these instructions will assume familiarity with and
 access to a Linux (or other \*NIX) command line. If this is unfamiliar to you,
 please use the resources below to get yourself oriented.
 
-If you are using Rhino, an apple computer running macOS, or a Linux computer,
-you will already have access to a command line. On Windows, we recommend using
-the Ubuntu subsystem
+If you are using an apple computer running macOS or a Linux computer, you
+already have access to a command line. On Windows, we recommend using the
+Ubuntu subsystem
 <https://docs.microsoft.com/en-us/windows/wsl/install-win10> or Cygwin
 <https://www.cygwin.com/>.
 
 General Introduction:
 https://ubuntu.com/tutorials/command-line-for-beginners#1-overview
 
-## Getting started on Rhino
-
-These instructions will help you access and setup your account on the Rhino
-computing cluster to the point where you can follow these notes and perform
-analyses. 
-
-### Setting up your Rhino2 Account
-
-1\. You can log in to Rhino2 in a terminal window by using any ssh client
-to ssh into rhino as follows, replacing the "username" with your username:
-
-    ssh username@rhino2.psych.upenn.edu
-
-and then typing your temporary password when prompted. Once successfully
-connected, type:
-
-    passwd
-
-to set your password to something only you know.
-
 ## Getting the course GitHub repository
 
 In a terminal in the location where you would like to download these course
 assignment materials, enter the following:
 
-    git clone https://github.com/pennmem/COGS4290_DataMemoryBrains.git
+    git clone --recurse-submodules https://github.com/pennmem/COGS4290_DataMemoryBrains.git
 
 If git is not installed, you can find instructions
 [here](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
 
-This respository will be downloaded to a folder named DataMemoryBrain in the
-same location where you ran the git clone command.
+This repository will be downloaded to a folder named COGS4290_DataMemoryBrains in
+the same location where you ran the git clone command. `--recurse-submodules`
+also fetches the `bidsreader` package the notebooks import from
+`dependencies/bidsreader`; if you cloned without it, run
+`git submodule update --init --recursive` inside the folder.
 
-## Accessing Jupyter Lab
+## Setting up your environment
 
-Once you have your password set up, check to be sure you can log in to
-JupyterLab, where you'll be doing most of your coursework. If you are
-connected to the internet on UPenn's campus, you only need to go to
-[https://rhino2.psych.upenn.edu:9500](https://rhino2.psych.upenn.edu:9500) to
-access JupyterLab. If you are connecting remotely, follow the rest of this
-step. In a terminal where ssh is accessible, replace the "username" with your
-username, and open an ssh tunnel by typing:
-
-    ssh -L8000:rhino2.psych.upenn.edu:9500 username@rhino2.psych.upenn.edu
-
-followed by entering your rhino password. In your web browser, navigate to:
-
-[https://127.0.0.1:8000](https://127.0.0.1:8000)
-
-and you should see the JupyterLab interface pop up!  Note that the "s" on https
-is critical for this to work.  Your browser might warn about this being an
-insecure connection or invalid certificate, given that 127.0.0.1 (direct to the
-ssh tunnel on your own computer) is not rhino.  Override this warning and
-connect anyway, because we are using ssh to provide better security here.  If
-the connection still fails, go back and make sure that your ssh tunnel was
-correctly created.
-
-Alternatively, you can use the Penn VPN service GlobalProtect
-([https://www.isc.upenn.edu/how-to/university-vpn-getting-started-guide](https://www.isc.upenn.edu/how-to/university-vpn-getting-started-guide))
-to access rhino while off-campus as if you were on-campus, i.e. at
-[https://rhino2.psych.upenn.edu:9500](https://rhino2.psych.upenn.edu:9500).
-This remote connection method can be stabler than connecting via the SSH
-tunneling option.
-
-## Setting up your environment (Rhino)
-Good news! Working on rhino gives you access to a computing environment that
-already has the right software installed to do all the assignments!
-
-In JupyterLab, open any notebook and then go to Kernel -> Change Kernel... and
-then select "workshop" from the dropdown! Make sure you use this kernel
-whenever you're opening a notebook.
-
-## Getting started on your computer
-
-In this course, you will have access to the CML computer cluster, Rhino.
-However, if you for whatever reason need to work locally, we provide the
-following guidance.  We use conda to manage the various libraries needed to
-perform analyses using Python. Conda is a tool that allows Python libraries to
-be installed into 'environments.' This is a folder that lets you manage the
-needs of different projects independently; the reasons for this may not be
-apparent immediately, but using some sort of virtual environment system of some
-sort is a standard practice and isolates issues when they come up. Conda is
-available from the [Anaconda project
+We use conda to manage the various libraries needed to perform analyses using
+Python. Conda is a tool that allows Python libraries to be installed into
+'environments.' This is a folder that lets you manage the needs of different
+projects independently; using some sort of virtual environment system is a
+standard practice and isolates issues when they come up. Conda is available
+from the [Anaconda project
 home](https://docs.conda.io/projects/conda/en/latest/index.html). We recommend
 installing miniconda, though you can read the installation instructions and
 decide for yourself which distribution is best for you.
 
-Once you have conda set up, we need to additionally set up Jupyter notebooks.
-This is a tool that makes some types of python development easier since it
-allows you to run small pieces of code and immediately see the output alongside
-the code.  Installation instructions and general information are available from
-the [Jupyter project
-home](https://jupyterlab.readthedocs.io/en/stable/index.html).
-
-## Setting up your environment (non-Rhino / local computer)
-
-If you are using Rhino, you do NOT need to setup your own environment to use
-these materials, and can skip this section.  The workshop\_311 environment
-available to all users on Rhino contains all the required dependencies plus
-extra.  If you are using your own system, then once you've installed the
-necessary tools, you'll need to create a new virtual environment. To do so,
-open a terminal and run:
+Once you have conda set up, create a new environment and activate it. The
+activation step is necessary any time you open a new terminal:
 
     conda create -y -n <environmentname> python=3.11
+    conda activate <environmentname>
     NOTE: 'environmentname' is a placeholder, please replace it with a more descriptive name!
 
-For commands to alter or refer to this environment, you'll need to activate it.
-This step will be necessary any time you open a new terminal or restart your
-session, but will be remembered for subsequent commands.
+Next, install the suite of tools for EEG analysis. First MNE (this may take a
+while, because MNE has a lot of dependencies):
 
-    conda activate <environmentname>
-    NOTE: on older versions of conda, you may instead need to use source activate environmentname
+    conda install -c conda-forge mne mne-bids
 
-
-Next, you'll need to install a suite of tools for EEG analysis. First, install
-MNE by typing the following (be sure you're in the Anaconda "environment" you
-just created in Step 1, by typing "source activate environmentname"). Note that
-this may take a while, because MNE has a lot of dependencies:
-
-    conda install -c conda-forge mne
-
-If this does not work at first, try `pip install mne`
+If this does not work at first, try `pip install mne mne-bids`.
 
 Next, install PTSA, which is a set of EEG tools developed by former lab
 members:
@@ -197,21 +134,39 @@ members:
 
 Install a few extra packages in use for these notes:
 
-    conda install scikit-learn statsmodels seaborn
+    conda install scikit-learn statsmodels seaborn psutil dask distributed pytest
 
-Finally, you'll need to link JupyterLab with your specific Python installation.
-While still logged in and in your Anaconda "environment", type:
+Finally, install Jupyter and link it with this environment:
 
-    conda install ipykernel
-
-and once that's done:
-
+    conda install jupyterlab ipykernel
     python -m ipykernel install --user --name environmentname --display-name "environmentname"
 
-You should be all set! Next time you log in to your JupyterLab account, you
-should see an option to launch a new notebook with "environmentname" as your
-Python environment. If you've been logged in to JupyterLab this whole time, you
-may need to log out and log back in again to see this change take effect.
+Start JupyterLab with `jupyter lab` from inside the repository folder and pick
+"environmentname" as the kernel when you open a notebook.
+
+## Working on Rhino
+
+Lab members with a Rhino account can do everything above on the cluster
+instead, where the data are already on disk and a kernel with all dependencies
+exists. Log in with any ssh client, replacing "username" with your username,
+and set your password:
+
+    ssh username@rhino2.psych.upenn.edu
+    passwd
+
+JupyterLab runs at
+[https://rhino2.psych.upenn.edu:9500](https://rhino2.psych.upenn.edu:9500) on
+campus. Off campus, either use the Penn VPN GlobalProtect
+([https://www.isc.upenn.edu/how-to/university-vpn-getting-started-guide](https://www.isc.upenn.edu/how-to/university-vpn-getting-started-guide))
+or open an ssh tunnel and browse to
+[https://127.0.0.1:8000](https://127.0.0.1:8000) (the "s" in https matters;
+override the certificate warning, the connection is protected by ssh):
+
+    ssh -L8000:rhino2.psych.upenn.edu:9500 username@rhino2.psych.upenn.edu
+
+In JupyterLab, open any notebook, go to Kernel -> Change Kernel... and select
+"workshop" (or `workshop_311`) from the dropdown. Module 12 (parallel
+computing) additionally uses the cluster's job scheduler.
 
 ## Getting the data
 

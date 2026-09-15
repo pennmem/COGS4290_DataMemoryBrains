@@ -1,8 +1,8 @@
 {
   "module": 14,
   "assignment": 6,
-  "title": "Spectral Inferences (z-power and topographic SME)",
-  "student_notebook": "Module_14_Spectral_Inferences.ipynb",
+  "title": "Spectral Inferences and the Subsequent Memory Effect (iEEG)",
+  "student_notebook": "Module_14_Spectral_Inferences_and_SME.ipynb",
   "solution_notebook": "Solution_Module_14.ipynb",
   "answers": [
     {
@@ -33,14 +33,6 @@
       "solution_expr": "nrec_log_mean"
     },
     {
-      "key": "Q1.1_subject_stat_table",
-      "question": "1.1",
-      "role": "value",
-      "type": "json",
-      "student_hint": "solution-only: LaTeX subject-stats table string (see review notes)",
-      "solution_expr": "table"
-    },
-    {
       "key": "Q1.2_rec_avg",
       "question": "1.2",
       "role": "plot",
@@ -64,7 +56,7 @@
       "role": "plot",
       "type": "array",
       "shape_hint": "(16,)",
-      "student_hint": "same recalled mean power as Q1.2, plotted on linear axes (part 3, no semilog)",
+      "student_hint": "same recalled mean power as Q1.2, plotted on linear axes (part 3)",
       "solution_expr": "rec_avg"
     },
     {
@@ -73,7 +65,7 @@
       "role": "plot",
       "type": "array",
       "shape_hint": "(16,)",
-      "student_hint": "same non-recalled mean power as Q1.2, plotted on linear axes (part 3, no semilog)",
+      "student_hint": "same non-recalled mean power as Q1.2, plotted on linear axes (part 3)",
       "solution_expr": "nrec_avg"
     },
     {
@@ -86,102 +78,208 @@
       "solution_expr": "log_diff_mean"
     },
     {
-      "key": "Q2.1_rec_z_mean",
+      "key": "Q2.1_rec_logpow",
       "question": "2.1",
       "role": "plot",
       "type": "array",
       "shape_hint": "(16,)",
-      "student_hint": "across-subject mean z-scored power spectrum, recalled (see binding note in review_notes)",
-      "solution_expr": "rec_z_mean"
+      "student_hint": "across-subject mean spectrum of log10 power taken sample-by-sample before time-averaging, recalled",
+      "solution_expr": "rec_logpow"
     },
     {
-      "key": "Q2.1_nrec_z_mean",
+      "key": "Q2.1_nrec_logpow",
       "question": "2.1",
       "role": "plot",
       "type": "array",
       "shape_hint": "(16,)",
-      "student_hint": "across-subject mean z-scored power spectrum, non-recalled (see binding note in review_notes)",
-      "solution_expr": "nrec_z_mean"
+      "student_hint": "across-subject mean spectrum of log10 power taken before time-averaging, non-recalled",
+      "solution_expr": "nrec_logpow"
     },
     {
-      "key": "Q2.2_rec_logpow",
+      "key": "Q2.2_rec_z_mean",
       "question": "2.2",
       "role": "plot",
       "type": "array",
       "shape_hint": "(16,)",
-      "student_hint": "across-subject mean log-power spectrum, recalled (variable rec_z_mean holds log-power here)",
+      "student_hint": "across-subject mean of within-session z-scored power, recalled",
       "solution_expr": "rec_z_mean"
     },
     {
-      "key": "Q2.2_nrec_logpow",
+      "key": "Q2.2_nrec_z_mean",
       "question": "2.2",
       "role": "plot",
       "type": "array",
       "shape_hint": "(16,)",
-      "student_hint": "across-subject mean log-power spectrum, non-recalled (variable nrec_z_mean holds log-power here)",
+      "student_hint": "across-subject mean of within-session z-scored power, non-recalled",
       "solution_expr": "nrec_z_mean"
     },
     {
-      "key": "Q2.3_transform",
-      "question": "2.3",
-      "role": "plot",
-      "type": "array",
-      "shape_hint": "(16,)",
-      "student_hint": "student-chosen third transformation of the power spectrum (solution has no answer)",
-      "skip_solution": true
-    },
-    {
-      "key": "Q3.1_diff_elecs",
-      "question": "3.1",
-      "role": "plot",
-      "type": "array",
-      "shape_hint": "(n_electrodes,)",
-      "student_hint": "per-electrode SME (recalled - non-recalled) z-scored power at 147 Hz; the values feeding the topoplot",
-      "solution_expr": "diff_elecs"
-    },
-    {
-      "key": "Q3.1_plot_powers",
-      "question": "3.1",
-      "role": "plot",
-      "type": "array",
-      "shape_hint": "(129,)",
-      "student_hint": "129-length topo array (diff_elecs scattered onto the HCGSN128 layout by electrode number) passed as topoplot values=",
-      "solution_expr": "plot_powers"
-    },
-    {
-      "key": "Q3.1_rec_elecs",
-      "question": "3.1",
-      "role": "plot",
-      "type": "array",
-      "shape_hint": "(n_electrodes,)",
-      "student_hint": "across-subject mean z-power per electrode at 147 Hz, recalled",
-      "solution_expr": "rec_elecs"
-    },
-    {
-      "key": "Q3.1_nrec_elecs",
-      "question": "3.1",
-      "role": "plot",
-      "type": "array",
-      "shape_hint": "(n_electrodes,)",
-      "student_hint": "across-subject mean z-power per electrode at 147 Hz, non-recalled",
-      "solution_expr": "nrec_elecs"
-    },
-    {
-      "key": "Q3.1_fdr_sig",
+      "key": "Q3.1_region_counts",
       "question": "3.1",
       "role": "value",
-      "type": "array",
-      "shape_hint": "(n_electrodes,)",
-      "student_hint": "boolean mask of electrodes surviving Benjamini-Hochberg FDR at p<0.05",
-      "solution_expr": "FDR_sig"
+      "type": "dataframe",
+      "columns": [
+        "subject",
+        "temporal",
+        "frontal",
+        "hippocampus"
+      ],
+      "shape_hint": "(20, 4)",
+      "student_hint": "one row per cohort subject: number of bipolar pairs in temporal cortex, frontal cortex and hippocampus (first FR1 session)",
+      "solution_expr": "region_counts"
     },
     {
-      "key": "Q3.1_n_significant",
-      "question": "3.1",
+      "key": "Q4.2_rec_means_10hz",
+      "question": "4.2",
+      "role": "plot",
+      "type": "array",
+      "shape_hint": "(2,)",
+      "student_hint": "recalled mean of subject-level regional z-power [temporal, frontal] at 10 Hz, bipolar reference (errorbar y)",
+      "solution_expr": "rec_means_10hz"
+    },
+    {
+      "key": "Q4.2_rec_sems_10hz",
+      "question": "4.2",
+      "role": "plot",
+      "type": "array",
+      "shape_hint": "(2,)",
+      "student_hint": "recalled SEM across subjects [temporal, frontal] at 10 Hz, bipolar reference (errorbar yerr)",
+      "solution_expr": "rec_sems_10hz"
+    },
+    {
+      "key": "Q4.2_nrec_means_10hz",
+      "question": "4.2",
+      "role": "plot",
+      "type": "array",
+      "shape_hint": "(2,)",
+      "student_hint": "not-recalled mean of subject-level regional z-power [temporal, frontal] at 10 Hz, bipolar reference (errorbar y)",
+      "solution_expr": "nrec_means_10hz"
+    },
+    {
+      "key": "Q4.2_nrec_sems_10hz",
+      "question": "4.2",
+      "role": "plot",
+      "type": "array",
+      "shape_hint": "(2,)",
+      "student_hint": "not-recalled SEM across subjects [temporal, frontal] at 10 Hz, bipolar reference (errorbar yerr)",
+      "solution_expr": "nrec_sems_10hz"
+    },
+    {
+      "key": "Q4.2_rec_means_147hz",
+      "question": "4.2",
+      "role": "plot",
+      "type": "array",
+      "shape_hint": "(2,)",
+      "student_hint": "recalled mean of subject-level regional z-power [temporal, frontal] at 147 Hz, bipolar reference (errorbar y)",
+      "solution_expr": "rec_means_147hz"
+    },
+    {
+      "key": "Q4.2_rec_sems_147hz",
+      "question": "4.2",
+      "role": "plot",
+      "type": "array",
+      "shape_hint": "(2,)",
+      "student_hint": "recalled SEM across subjects [temporal, frontal] at 147 Hz, bipolar reference (errorbar yerr)",
+      "solution_expr": "rec_sems_147hz"
+    },
+    {
+      "key": "Q4.2_nrec_means_147hz",
+      "question": "4.2",
+      "role": "plot",
+      "type": "array",
+      "shape_hint": "(2,)",
+      "student_hint": "not-recalled mean of subject-level regional z-power [temporal, frontal] at 147 Hz, bipolar reference (errorbar y)",
+      "solution_expr": "nrec_means_147hz"
+    },
+    {
+      "key": "Q4.2_nrec_sems_147hz",
+      "question": "4.2",
+      "role": "plot",
+      "type": "array",
+      "shape_hint": "(2,)",
+      "student_hint": "not-recalled SEM across subjects [temporal, frontal] at 147 Hz, bipolar reference (errorbar yerr)",
+      "solution_expr": "nrec_sems_147hz"
+    },
+    {
+      "key": "Q4.2_sme_fdr_sig",
+      "question": "4.2",
       "role": "value",
-      "type": "scalar",
-      "student_hint": "number of electrodes significant after BH FDR correction",
-      "solution_expr": "int(np.sum(FDR_sig))"
+      "type": "array",
+      "shape_hint": "(4,)",
+      "student_hint": "boolean: which of [temporal@10Hz, frontal@10Hz, temporal@147Hz, frontal@147Hz] survive BH-FDR at q<0.05 (paired t-test, recalled vs non-recalled subject means)",
+      "solution_expr": "sme_fdr_sig"
+    },
+    {
+      "key": "Q5.1_rec_means_10hz",
+      "question": "5.1",
+      "role": "plot",
+      "type": "array",
+      "shape_hint": "(2,)",
+      "student_hint": "recalled mean of subject-level regional z-power [temporal, frontal] at 10 Hz, region-weighted average reference",
+      "solution_expr": "rec_means_10hz_avgref"
+    },
+    {
+      "key": "Q5.1_rec_sems_10hz",
+      "question": "5.1",
+      "role": "plot",
+      "type": "array",
+      "shape_hint": "(2,)",
+      "student_hint": "recalled SEM across subjects [temporal, frontal] at 10 Hz, region-weighted average reference",
+      "solution_expr": "rec_sems_10hz_avgref"
+    },
+    {
+      "key": "Q5.1_nrec_means_10hz",
+      "question": "5.1",
+      "role": "plot",
+      "type": "array",
+      "shape_hint": "(2,)",
+      "student_hint": "not-recalled mean of subject-level regional z-power [temporal, frontal] at 10 Hz, region-weighted average reference",
+      "solution_expr": "nrec_means_10hz_avgref"
+    },
+    {
+      "key": "Q5.1_nrec_sems_10hz",
+      "question": "5.1",
+      "role": "plot",
+      "type": "array",
+      "shape_hint": "(2,)",
+      "student_hint": "not-recalled SEM across subjects [temporal, frontal] at 10 Hz, region-weighted average reference",
+      "solution_expr": "nrec_sems_10hz_avgref"
+    },
+    {
+      "key": "Q5.1_rec_means_147hz",
+      "question": "5.1",
+      "role": "plot",
+      "type": "array",
+      "shape_hint": "(2,)",
+      "student_hint": "recalled mean of subject-level regional z-power [temporal, frontal] at 147 Hz, region-weighted average reference",
+      "solution_expr": "rec_means_147hz_avgref"
+    },
+    {
+      "key": "Q5.1_rec_sems_147hz",
+      "question": "5.1",
+      "role": "plot",
+      "type": "array",
+      "shape_hint": "(2,)",
+      "student_hint": "recalled SEM across subjects [temporal, frontal] at 147 Hz, region-weighted average reference",
+      "solution_expr": "rec_sems_147hz_avgref"
+    },
+    {
+      "key": "Q5.1_nrec_means_147hz",
+      "question": "5.1",
+      "role": "plot",
+      "type": "array",
+      "shape_hint": "(2,)",
+      "student_hint": "not-recalled mean of subject-level regional z-power [temporal, frontal] at 147 Hz, region-weighted average reference",
+      "solution_expr": "nrec_means_147hz_avgref"
+    },
+    {
+      "key": "Q5.1_nrec_sems_147hz",
+      "question": "5.1",
+      "role": "plot",
+      "type": "array",
+      "shape_hint": "(2,)",
+      "student_hint": "not-recalled SEM across subjects [temporal, frontal] at 147 Hz, region-weighted average reference",
+      "solution_expr": "nrec_sems_147hz_avgref"
     }
   ]
 }
