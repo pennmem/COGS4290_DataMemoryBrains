@@ -30,17 +30,17 @@ by an *assignment* notebook that applies it and is auto-graded (see
 | 07 | EEG and ERPs | assignment 3 | electrode localisation, subsequent-memory ERPs, per-timepoint tests |
 | 08 | Univariate Statistics | intro (required) | t-tests, multiple comparisons, FDR |
 | 09 | Spectral Analysis | intro | Welch, Morlet wavelets, line noise, the 1/f spectrum |
-| 10 | Signal / Spectral Analysis | assignment 5 | power spectra for recalled vs non-recalled words; `SpectralHelpers.py` |
+| 10 | Signal / Spectral Analysis | assignment 4 | power spectra for recalled vs non-recalled words; `SpectralHelpers.py` |
 | 11 | Simulation and Unit Testing | intro | simulate EEG with a known answer, write tests that fail on purpose |
-| 12 | Parallel Computing | intro | running one-session functions over a cohort in parallel |
+| 12 | Parallel Computing | intro | running one-session functions over a cohort in parallel (`cml_parallel`) |
 | 13 | RAM and File I/O | intro | predicting memory use, saving intermediate results |
-| 14 | Spectral Inferences and the SME | assignment 6 | 20-subject spectra with confidence bands, normalisation, regional SME, referencing |
-| 16 | Machine Learning | assignment 8 | logistic-regression classifiers of memory state, ROC/AUC |
-| 17 | Machine Learning | intro | scikit-learn, cross-validation |
-| 18 | Classifier Validation | intro | permutation tests, leakage |
-| 19 | Hyperparameters and Nested CV | assignment 9 | nested cross-validation, penalisation schemes |
-| 20 | Representational Similarity Analysis | intro | RSA theory and computation |
-| 21 | RSA | assignment 10 | encoding-retrieval similarity |
+| 14 | Spectral Inferences and the SME | assignment 5 | 20-subject spectra with confidence bands, normalisation, regional SME, referencing |
+| 15 | Machine Learning | intro | scikit-learn, cross-validation |
+| 16 | Machine Learning | assignment 6 | logistic-regression classifiers of memory state, ROC/AUC |
+| 17 | Classifier Validation | intro | permutation tests, leakage |
+| 18 | Hyperparameters and Nested CV | assignment 7 | nested cross-validation, penalisation schemes |
+| 19 | Representational Similarity Analysis | intro | RSA theory and computation |
+| 20 | RSA | assignment 8 | encoding-retrieval similarity |
 | X, Y | Connectivity, Oscillation Detection | optional | further methods |
 
 Behavioral modules (01-05) use the scalp-EEG PEERS studies (`ltpFR`, `ltpFR2`,

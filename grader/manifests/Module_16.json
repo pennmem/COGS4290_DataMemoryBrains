@@ -1,9 +1,9 @@
 {
   "module": 16,
-  "assignment": 8,
+  "assignment": 6,
   "title": "Machine Learning (Logistic-Regression Classifier ROC/AUC)",
   "student_notebook": "Module_16_Machine_Learning.ipynb",
-  "solution_notebook": "Solution_Module_17.ipynb",
+  "solution_notebook": "Solution_Module_16.ipynb",
   "answers": [
     {
       "key": "Q2.1_preds_sub0",

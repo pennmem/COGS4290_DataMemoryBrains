@@ -1,9 +1,9 @@
 {
-  "module": 19,
-  "assignment": 9,
+  "module": 18,
+  "assignment": 7,
   "title": "Hyperparameters and Nested Cross-Validation (Penalization / Coefficients)",
-  "student_notebook": "Module_19_Hyperparameters_Nested_CV.ipynb",
-  "solution_notebook": "Solution_Module_19.ipynb",
+  "student_notebook": "Module_18_Hyperparameters_Nested_CV.ipynb",
+  "solution_notebook": "Solution_Module_18.ipynb",
   "answers": [
     {
       "key": "Q1.1_avg_fpr",

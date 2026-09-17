@@ -1,9 +1,9 @@
 {
-  "module": 21,
-  "assignment": 10,
+  "module": 20,
+  "assignment": 8,
   "title": "Representational Similarity Analysis",
-  "student_notebook": "Module_21_RSA.ipynb",
-  "solution_notebook": "Solution_Module_21.ipynb",
+  "student_notebook": "Module_20_RSA.ipynb",
+  "solution_notebook": "Solution_Module_20.ipynb",
   "answers": [
     {
       "key": "Q1c_within_list_serialpos_rsa_mat",
