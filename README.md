@@ -46,6 +46,9 @@ by an *assignment* notebook that applies it and is auto-graded (see
 Behavioral modules (01-05) use the scalp-EEG PEERS studies (`ltpFR`, `ltpFR2`,
 `VFFR`); every EEG module from 06 onward uses intracranial FR1 data. Module 10
 onward analyse the 20-subject cohort `cml_data.INTRAC_SUBS`.
+`cml_parallel.run_sessions` runs your per-session function over that cohort
+(caching one result per session, several sessions at a time) — the local
+replacement for the lab's cluster job launcher.
 
 By the end of this course, you should be able to carry out EEG/iEEG/ECoG
 analyses, like computing spectral power and phase, and to compute statistics or
@@ -252,7 +255,7 @@ available_tasks("ltpFR2", "LTP093")   # ['ltpFR', 'ltpFR2']
 | `NICLS` | [ds004706](https://openneuro.org/datasets/ds004706) | scalp EEG |
 
 Note that BIDS task labels are **case-sensitive** (`ltpFR2`, not `ltpfr2`) when you
-pass them to `BIDSReader`; `openneuro_root` accepts either.
+pass them to `BIDSReader`; `get_bids_root` accepts either.
 
 The RSA modules additionally need precomputed derivative files that are *not* part
 of the OpenNeuro release — see the note at the top of those notebooks.
@@ -264,6 +267,6 @@ Most notebooks import `bidsreader` from `dependencies/bidsreader`. Fetch it with
     git submodule update --init --recursive
 
 If you still have Rhino access and prefer to read from the cluster directly, pass
-the cluster path as `root=` instead of calling `openneuro_root`. For questions about
+the cluster path as `root=` instead of calling `get_bids_root`. For questions about
 data access, contact kahana-sysadmin@sas.upenn.edu.
 

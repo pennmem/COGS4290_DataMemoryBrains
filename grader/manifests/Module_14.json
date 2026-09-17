@@ -165,40 +165,40 @@
       "solution_expr": "nrec_sems_10hz"
     },
     {
-      "key": "Q4.2_rec_means_147hz",
+      "key": "Q4.2_rec_means_103hz",
       "question": "4.2",
       "role": "plot",
       "type": "array",
       "shape_hint": "(2,)",
-      "student_hint": "recalled mean of subject-level regional z-power [temporal, frontal] at 147 Hz, bipolar reference (errorbar y)",
-      "solution_expr": "rec_means_147hz"
+      "student_hint": "recalled mean of subject-level regional z-power [temporal, frontal] at 103 Hz, bipolar reference (errorbar y)",
+      "solution_expr": "rec_means_103hz"
     },
     {
-      "key": "Q4.2_rec_sems_147hz",
+      "key": "Q4.2_rec_sems_103hz",
       "question": "4.2",
       "role": "plot",
       "type": "array",
       "shape_hint": "(2,)",
-      "student_hint": "recalled SEM across subjects [temporal, frontal] at 147 Hz, bipolar reference (errorbar yerr)",
-      "solution_expr": "rec_sems_147hz"
+      "student_hint": "recalled SEM across subjects [temporal, frontal] at 103 Hz, bipolar reference (errorbar yerr)",
+      "solution_expr": "rec_sems_103hz"
     },
     {
-      "key": "Q4.2_nrec_means_147hz",
+      "key": "Q4.2_nrec_means_103hz",
       "question": "4.2",
       "role": "plot",
       "type": "array",
       "shape_hint": "(2,)",
-      "student_hint": "not-recalled mean of subject-level regional z-power [temporal, frontal] at 147 Hz, bipolar reference (errorbar y)",
-      "solution_expr": "nrec_means_147hz"
+      "student_hint": "not-recalled mean of subject-level regional z-power [temporal, frontal] at 103 Hz, bipolar reference (errorbar y)",
+      "solution_expr": "nrec_means_103hz"
     },
     {
-      "key": "Q4.2_nrec_sems_147hz",
+      "key": "Q4.2_nrec_sems_103hz",
       "question": "4.2",
       "role": "plot",
       "type": "array",
       "shape_hint": "(2,)",
-      "student_hint": "not-recalled SEM across subjects [temporal, frontal] at 147 Hz, bipolar reference (errorbar yerr)",
-      "solution_expr": "nrec_sems_147hz"
+      "student_hint": "not-recalled SEM across subjects [temporal, frontal] at 103 Hz, bipolar reference (errorbar yerr)",
+      "solution_expr": "nrec_sems_103hz"
     },
     {
       "key": "Q4.2_sme_fdr_sig",
@@ -206,7 +206,7 @@
       "role": "value",
       "type": "array",
       "shape_hint": "(4,)",
-      "student_hint": "boolean: which of [temporal@10Hz, frontal@10Hz, temporal@147Hz, frontal@147Hz] survive BH-FDR at q<0.05 (paired t-test, recalled vs non-recalled subject means)",
+      "student_hint": "boolean: which of [temporal@10Hz, frontal@10Hz, temporal@103Hz, frontal@103Hz] survive BH-FDR at q<0.05 (paired t-test, recalled vs non-recalled subject means)",
       "solution_expr": "sme_fdr_sig"
     },
     {
@@ -246,40 +246,40 @@
       "solution_expr": "nrec_sems_10hz_avgref"
     },
     {
-      "key": "Q5.1_rec_means_147hz",
+      "key": "Q5.1_rec_means_103hz",
       "question": "5.1",
       "role": "plot",
       "type": "array",
       "shape_hint": "(2,)",
-      "student_hint": "recalled mean of subject-level regional z-power [temporal, frontal] at 147 Hz, region-weighted average reference",
-      "solution_expr": "rec_means_147hz_avgref"
+      "student_hint": "recalled mean of subject-level regional z-power [temporal, frontal] at 103 Hz, region-weighted average reference",
+      "solution_expr": "rec_means_103hz_avgref"
     },
     {
-      "key": "Q5.1_rec_sems_147hz",
+      "key": "Q5.1_rec_sems_103hz",
       "question": "5.1",
       "role": "plot",
       "type": "array",
       "shape_hint": "(2,)",
-      "student_hint": "recalled SEM across subjects [temporal, frontal] at 147 Hz, region-weighted average reference",
-      "solution_expr": "rec_sems_147hz_avgref"
+      "student_hint": "recalled SEM across subjects [temporal, frontal] at 103 Hz, region-weighted average reference",
+      "solution_expr": "rec_sems_103hz_avgref"
     },
     {
-      "key": "Q5.1_nrec_means_147hz",
+      "key": "Q5.1_nrec_means_103hz",
       "question": "5.1",
       "role": "plot",
       "type": "array",
       "shape_hint": "(2,)",
-      "student_hint": "not-recalled mean of subject-level regional z-power [temporal, frontal] at 147 Hz, region-weighted average reference",
-      "solution_expr": "nrec_means_147hz_avgref"
+      "student_hint": "not-recalled mean of subject-level regional z-power [temporal, frontal] at 103 Hz, region-weighted average reference",
+      "solution_expr": "nrec_means_103hz_avgref"
     },
     {
-      "key": "Q5.1_nrec_sems_147hz",
+      "key": "Q5.1_nrec_sems_103hz",
       "question": "5.1",
       "role": "plot",
       "type": "array",
       "shape_hint": "(2,)",
-      "student_hint": "not-recalled SEM across subjects [temporal, frontal] at 147 Hz, region-weighted average reference",
-      "solution_expr": "nrec_sems_147hz_avgref"
+      "student_hint": "not-recalled SEM across subjects [temporal, frontal] at 103 Hz, region-weighted average reference",
+      "solution_expr": "nrec_sems_103hz_avgref"
     }
   ]
 }

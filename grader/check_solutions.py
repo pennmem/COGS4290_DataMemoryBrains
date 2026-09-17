@@ -178,7 +178,11 @@ def check_module(manifest_path, repo, solutions, check_answers):
             notes.append(f"answers: no reference answers generated yet ({ref.relative_to(solutions)})")
         else:
             got = json.loads(ref.read_text())
-            got_keys = set(got.keys() if isinstance(got, dict) else [x["key"] for x in got])
+            # answer_io writes {"module": .., "answers": {key: entry, ..}}
+            if isinstance(got, dict) and isinstance(got.get("answers"), dict):
+                got_keys = set(got["answers"])
+            else:
+                got_keys = set(got.keys() if isinstance(got, dict) else [x["key"] for x in got])
             for k in keys:
                 if k not in got_keys:
                     problems.append(f"answers: reference answers lack {k}")
