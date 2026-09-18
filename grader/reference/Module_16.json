@@ -1,0 +1,106 @@
+{
+ "Q2.1_preds_sub0": {
+  "kind": "form",
+  "shape": [
+   1080
+  ],
+  "columns": null
+ },
+ "Q2.1_preds_sub1": {
+  "kind": "form",
+  "shape": [
+   1140
+  ],
+  "columns": null
+ },
+ "Q2.1_preds_sub2": {
+  "kind": "form",
+  "shape": [
+   1800
+  ],
+  "columns": null
+ },
+ "Q2.1_ys_sub0": {
+  "kind": "hash",
+  "shape": [
+   1080
+  ],
+  "columns": null,
+  "sha256": "d834474dfdb121570352eec2d1fe1d4e528e205beaf616a4819dbffb81ae32e0"
+ },
+ "Q2.1_ys_sub1": {
+  "kind": "hash",
+  "shape": [
+   1140
+  ],
+  "columns": null,
+  "sha256": "098ef9577f5667ada03680ab27d0f0545aebc52344757c8384da7f1bcc90d2f9"
+ },
+ "Q2.1_ys_sub2": {
+  "kind": "hash",
+  "shape": [
+   1800
+  ],
+  "columns": null,
+  "sha256": "9a44ecf2aaf277ad9d0031b84993564c17977ca2e964fa209342071b4d059496"
+ },
+ "Q3.1_avg_fpr": {
+  "kind": "form",
+  "shape": [
+   200
+  ],
+  "columns": null
+ },
+ "Q3.1_avg_tpr": {
+  "kind": "form",
+  "shape": [
+   200
+  ],
+  "columns": null
+ },
+ "Q3.1_subj_aucs": {
+  "kind": "form",
+  "shape": [
+   20
+  ],
+  "columns": null
+ },
+ "Q3.1_mean_auc": {
+  "kind": "form",
+  "shape": [],
+  "columns": null
+ },
+ "Q3.1_fpr_sub0": {
+  "kind": "form",
+  "shape": [
+   465
+  ],
+  "columns": null
+ },
+ "Q3.1_tpr_sub0": {
+  "kind": "form",
+  "shape": [
+   465
+  ],
+  "columns": null
+ },
+ "Q4.1_cv_aucs": {
+  "kind": "form",
+  "shape": [
+   20
+  ],
+  "columns": null
+ },
+ "Q4.1_cv_train_aucs": {
+  "kind": "form",
+  "shape": [
+   20
+  ],
+  "columns": null
+ },
+ "Q4.1_mean_auc_diff": {
+  "kind": "form",
+  "shape": [],
+  "columns": null
+ }
+}

@@ -75,6 +75,9 @@ it can be compared against the reference answers.
    structure/format. Do your analysis and bind each result to a variable.
 2. In the grader cell, replace the placeholder variable with **your** variable name.
 3. Run the grader cell — it calls `save_answer(...)` and writes your answer.
+4. Read the line it prints: `✓` matches the reference, `✗` tells you what is off
+   (shape, columns, or the value itself), `·` means the shape is right and the
+   values are compared at grading (answers graded with a tolerance).
 
 Your **plots are saved too** — make sure each plotting cell calls `plt.show()` so the
 figure can be captured for the grade report.

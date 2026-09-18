@@ -1,0 +1,84 @@
+{
+ "Q1.1_avg_fpr": {
+  "kind": "form",
+  "shape": [
+   200
+  ],
+  "columns": null
+ },
+ "Q1.1_avg_tpr": {
+  "kind": "form",
+  "shape": [
+   200
+  ],
+  "columns": null
+ },
+ "Q1.1_nest_aucs": {
+  "kind": "form",
+  "shape": [
+   20
+  ],
+  "columns": null
+ },
+ "Q1.1_mean_nested_auc": {
+  "kind": "form",
+  "shape": [],
+  "columns": null
+ },
+ "Q2.1_auc_df": {
+  "kind": "form",
+  "shape": [
+   60,
+   2
+  ],
+  "columns": [
+   "Method",
+   "AUC"
+  ]
+ },
+ "Q3.1_coefs_l2_sub0": {
+  "kind": "form",
+  "shape": [
+   4032
+  ],
+  "columns": null
+ },
+ "Q3.1_coefs_l1_sub0": {
+  "kind": "form",
+  "shape": [
+   4032
+  ],
+  "columns": null
+ },
+ "Q3.1_coefs_elastic_sub0": {
+  "kind": "form",
+  "shape": [
+   4032
+  ],
+  "columns": null
+ },
+ "Q4.1_no_z_aucs": {
+  "kind": "form",
+  "shape": [
+   20
+  ],
+  "columns": null
+ },
+ "Q4.1_avg_tpr_no_z": {
+  "kind": "form",
+  "shape": [
+   200
+  ],
+  "columns": null
+ },
+ "Q4.1_mean_auc_z": {
+  "kind": "form",
+  "shape": [],
+  "columns": null
+ },
+ "Q4.1_mean_auc_no_z": {
+  "kind": "form",
+  "shape": [],
+  "columns": null
+ }
+}

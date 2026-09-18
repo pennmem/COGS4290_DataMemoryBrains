@@ -1,0 +1,48 @@
+{
+ "Q1.1_freqs": {
+  "kind": "form",
+  "shape": [
+   8
+  ],
+  "columns": null
+ },
+ "Q1.1_rec_powers": {
+  "kind": "form",
+  "shape": [
+   1,
+   8
+  ],
+  "columns": null
+ },
+ "Q1.1_nrec_powers": {
+  "kind": "form",
+  "shape": [
+   1,
+   8
+  ],
+  "columns": null
+ },
+ "Q2.1_freqs": {
+  "kind": "form",
+  "shape": [
+   16
+  ],
+  "columns": null
+ },
+ "Q2.1_rec_powers": {
+  "kind": "form",
+  "shape": [
+   3,
+   16
+  ],
+  "columns": null
+ },
+ "Q2.1_nrec_powers": {
+  "kind": "form",
+  "shape": [
+   3,
+   16
+  ],
+  "columns": null
+ }
+}

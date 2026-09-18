@@ -16,6 +16,10 @@ save_answer("Q3.3_ave_spc", ave_spc, module=4, question="3.3")   # ← replace `
 2. In the grader cell, swap the placeholder for **your** variable name. The comment
    tells you the expected type/format (scalar, array, DataFrame + columns, …).
 3. Run the grader cell — it writes your answer into `answers/Module_<NN>/`.
+4. Read the line it prints: `✓` matches the reference, `✗` says what is off (shape,
+   columns, or the value), `·` means the shape is right and the value is compared at
+   grading. The references in `grader/reference/` are hashes, so they can't tell you
+   the answer, only whether yours matches.
 
 Run every grader cell without error before you submit. Your answers land in
 `answers/Module_<NN>/` (a `manifest.json` + one file per non-scalar answer). Submit

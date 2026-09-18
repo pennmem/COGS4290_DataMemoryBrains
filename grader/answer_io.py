@@ -16,7 +16,8 @@ Typical use inside a notebook (run from the repo root)::
 
 Design goals: tiny, dependency-light (only numpy + optional pandas), never raises
 out of a student's notebook for a recoverable problem (it warns instead), and
-idempotent per key (re-saving a key overwrites cleanly).
+idempotent per key (re-saving a key overwrites cleanly). After saving, the value is
+checked against ``grader/reference/`` when that exists (one ✓/✗ line per key).
 """
 
 from __future__ import annotations
@@ -168,7 +169,6 @@ def save_answer(
     Pass ``fig=<matplotlib Figure>`` or ``fig="current"`` to also snapshot the
     figure to ``<key>.png`` (used only for the report's visual context).
 
-    Returns the manifest entry dict.
     """
     d = module_dir(module, answers_root)
     entry = {
@@ -224,7 +224,7 @@ def save_answer(
                 pickle.dump(value, fh)
     except Exception as exc:  # never blow up a notebook run over a save
         warnings.warn(f"answer_io: failed to save '{key}' (module {module}): {exc}")
-        return entry
+        return
 
     # optional figure snapshot: fig="last" (stashed by enable_figure_capture),
     # fig="current" (plt.gcf()), or an explicit Figure/Axes object
@@ -247,7 +247,64 @@ def save_answer(
     manifest = _read_manifest(module, answers_root)
     manifest["answers"][key] = entry
     _write_manifest(manifest, module, answers_root)
-    return entry
+    check_answer(key, value, module)
+
+
+# --------------------------------------------------------------------------- #
+# self-check against grader/reference/Module_<NN>.json (see make_reference.py)
+# --------------------------------------------------------------------------- #
+REFERENCE_DIR = Path(__file__).resolve().parent / "reference"
+_REF_CACHE = {}
+
+
+def fingerprint(value, digits=6):
+    """Shape, columns and a SHA-256 of the values (floats to `digits` significant figures).
+    The hash cannot be reversed, so it can ship with the student repo."""
+    import hashlib
+    columns = None
+    if pd is not None and isinstance(value, (pd.DataFrame, pd.Series)):
+        df = value.to_frame() if isinstance(value, pd.Series) else value
+        columns, arr = [str(c) for c in df.columns], df.to_numpy()
+    else:
+        arr = np.asarray(value)
+    is_float = arr.dtype.kind in "fc" or (arr.dtype == object and any(isinstance(x, float) for x in arr.reshape(-1)))
+    def canon(x):
+        if isinstance(x, (float, np.floating, complex)):
+            return "nan" if x != x else f"{x:.{digits - 1}e}"
+        if isinstance(x, (bool, np.bool_)):
+            return str(int(x))
+        return str(x)
+    digest = hashlib.sha256("|".join(canon(x) for x in arr.reshape(-1)).encode()).hexdigest()
+    return {"shape": list(arr.shape), "columns": columns, "float": bool(is_float), "sha256": digest}
+
+
+def check_answer(key, value, module):
+    """Print one line: does *value* match the reference for *key*? Silent when no reference exists."""
+    nn = f"{int(module):02d}"
+    if nn not in _REF_CACHE:
+        path = REFERENCE_DIR / f"Module_{nn}.json"
+        _REF_CACHE[nn] = json.loads(path.read_text()) if path.exists() else None
+    ref = (_REF_CACHE[nn] or {}).get(key)
+    if ref is None:
+        return
+    try:
+        fp = fingerprint(value)
+    except Exception as exc:
+        print(f"  ? {key}: could not check ({exc})")
+        return
+    problems = []
+    if fp["shape"] != ref["shape"]:
+        problems.append(f"expected shape {tuple(ref['shape'])}, got {tuple(fp['shape'])}")
+    if ref.get("columns") and fp["columns"] != ref["columns"]:
+        problems.append(f"expected columns {ref['columns']}, got {fp['columns']}")
+    if not problems and ref["kind"] == "hash" and fp["sha256"] != ref["sha256"]:
+        problems.append("value differs from the reference" + (f" — {ref['hint']}" if ref.get("hint") else ""))
+    if problems:
+        print(f"  ✗ {key}: " + "; ".join(problems))
+    elif ref["kind"] == "hash":
+        print(f"  ✓ {key}")
+    else:
+        print(f"  · {key}: form ok (values are checked at grading)")
 
 
 # --------------------------------------------------------------------------- #

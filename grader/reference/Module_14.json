@@ -1,0 +1,220 @@
+{
+ "Q1.1_freqs": {
+  "kind": "form",
+  "shape": [
+   16
+  ],
+  "columns": null
+ },
+ "Q1.1_rec_log_mean": {
+  "kind": "form",
+  "shape": [
+   16
+  ],
+  "columns": null
+ },
+ "Q1.1_nrec_log_mean": {
+  "kind": "form",
+  "shape": [
+   16
+  ],
+  "columns": null
+ },
+ "Q1.2_rec_avg": {
+  "kind": "form",
+  "shape": [
+   16
+  ],
+  "columns": null
+ },
+ "Q1.2_nrec_avg": {
+  "kind": "form",
+  "shape": [
+   16
+  ],
+  "columns": null
+ },
+ "Q1.3_rec_avg": {
+  "kind": "form",
+  "shape": [
+   16
+  ],
+  "columns": null
+ },
+ "Q1.3_nrec_avg": {
+  "kind": "form",
+  "shape": [
+   16
+  ],
+  "columns": null
+ },
+ "Q1.4_log_diff_mean": {
+  "kind": "form",
+  "shape": [
+   16
+  ],
+  "columns": null
+ },
+ "Q2.1_rec_logpow": {
+  "kind": "form",
+  "shape": [
+   16
+  ],
+  "columns": null
+ },
+ "Q2.1_nrec_logpow": {
+  "kind": "form",
+  "shape": [
+   16
+  ],
+  "columns": null
+ },
+ "Q2.2_rec_z_mean": {
+  "kind": "form",
+  "shape": [
+   16
+  ],
+  "columns": null
+ },
+ "Q2.2_nrec_z_mean": {
+  "kind": "form",
+  "shape": [
+   16
+  ],
+  "columns": null
+ },
+ "Q3.1_region_counts": {
+  "kind": "hash",
+  "shape": [
+   20,
+   4
+  ],
+  "columns": [
+   "subject",
+   "temporal",
+   "frontal",
+   "hippocampus"
+  ],
+  "sha256": "b3326446a9bb6e0610ba2eda0ff695d4f064616c1adb0f74c3d2f1a6c0bb8385"
+ },
+ "Q4.2_rec_means_10hz": {
+  "kind": "form",
+  "shape": [
+   2
+  ],
+  "columns": null
+ },
+ "Q4.2_rec_sems_10hz": {
+  "kind": "form",
+  "shape": [
+   2
+  ],
+  "columns": null
+ },
+ "Q4.2_nrec_means_10hz": {
+  "kind": "form",
+  "shape": [
+   2
+  ],
+  "columns": null
+ },
+ "Q4.2_nrec_sems_10hz": {
+  "kind": "form",
+  "shape": [
+   2
+  ],
+  "columns": null
+ },
+ "Q4.2_rec_means_103hz": {
+  "kind": "form",
+  "shape": [
+   2
+  ],
+  "columns": null
+ },
+ "Q4.2_rec_sems_103hz": {
+  "kind": "form",
+  "shape": [
+   2
+  ],
+  "columns": null
+ },
+ "Q4.2_nrec_means_103hz": {
+  "kind": "form",
+  "shape": [
+   2
+  ],
+  "columns": null
+ },
+ "Q4.2_nrec_sems_103hz": {
+  "kind": "form",
+  "shape": [
+   2
+  ],
+  "columns": null
+ },
+ "Q4.2_sme_fdr_sig": {
+  "kind": "hash",
+  "shape": [
+   4
+  ],
+  "columns": null,
+  "sha256": "7ae0599afb0f4e0def9be462d669ef8025e653a221dce31c0ec2e3df5bf026f2"
+ },
+ "Q5.1_rec_means_10hz": {
+  "kind": "form",
+  "shape": [
+   2
+  ],
+  "columns": null
+ },
+ "Q5.1_rec_sems_10hz": {
+  "kind": "form",
+  "shape": [
+   2
+  ],
+  "columns": null
+ },
+ "Q5.1_nrec_means_10hz": {
+  "kind": "form",
+  "shape": [
+   2
+  ],
+  "columns": null
+ },
+ "Q5.1_nrec_sems_10hz": {
+  "kind": "form",
+  "shape": [
+   2
+  ],
+  "columns": null
+ },
+ "Q5.1_rec_means_103hz": {
+  "kind": "form",
+  "shape": [
+   2
+  ],
+  "columns": null
+ },
+ "Q5.1_rec_sems_103hz": {
+  "kind": "form",
+  "shape": [
+   2
+  ],
+  "columns": null
+ },
+ "Q5.1_nrec_means_103hz": {
+  "kind": "form",
+  "shape": [
+   2
+  ],
+  "columns": null
+ },
+ "Q5.1_nrec_sems_103hz": {
+  "kind": "form",
+  "shape": [
+   2
+  ],
+  "columns": null
+ }
+}

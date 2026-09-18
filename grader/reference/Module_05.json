@@ -1,0 +1,80 @@
+{
+ "Q1.1_irt_ltp093": {
+  "kind": "hash",
+  "shape": [
+   231,
+   3
+  ],
+  "columns": [
+   "Total Correct",
+   "Transition Position",
+   "IRT (ms)"
+  ],
+  "sha256": "89670d05b8547ed206fea5e96590397c9e7034bdb0c0a3e12887a17bd9758515"
+ },
+ "Q1.2_irt_between_subject": {
+  "kind": "hash",
+  "shape": [
+   276,
+   3
+  ],
+  "columns": [
+   "Total Correct",
+   "Transition Position",
+   "IRT (ms)"
+  ],
+  "sha256": "46651c606e2671ca812a8f7e057ff8d2090fc06ec2a4c3b1ba56d0bffbac188b"
+ },
+ "Q2.1_lag_crp_ltp093_ses0": {
+  "kind": "hash",
+  "shape": [
+   47,
+   3
+  ],
+  "columns": [
+   "subject",
+   "lag",
+   "CRP"
+  ],
+  "sha256": "43f20d20fe7d38035beeebffc37882e910344835083c7f35a7ad6f557f40d05e"
+ },
+ "Q2.2_lag_crp_ltp093_all": {
+  "kind": "hash",
+  "shape": [
+   47,
+   3
+  ],
+  "columns": [
+   "subject",
+   "lag",
+   "CRP"
+  ],
+  "sha256": "13e1ac1c37dfdb72d9cec690852bf77129967b33d08832001803f307aa78fa5d"
+ },
+ "Q2.3_lag_crp_between_subject": {
+  "kind": "hash",
+  "shape": [
+   3995,
+   3
+  ],
+  "columns": [
+   "subject",
+   "lag",
+   "CRP"
+  ],
+  "sha256": "c26b2393e66cdd57d81a09813cf894741da7ae66cad285c4f8c74473b2c180b9"
+ },
+ "Q3.1_pli_recency": {
+  "kind": "hash",
+  "shape": [
+   765,
+   3
+  ],
+  "columns": [
+   "subject",
+   "list_lag",
+   "PLI"
+  ],
+  "sha256": "d7244df56d85b165b77ab06541f2462b31ba07d5d3cfa870cc3c17b2aa323e86"
+ }
+}
