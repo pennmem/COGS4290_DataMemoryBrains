@@ -41,7 +41,7 @@ by an *assignment* notebook that applies it and is auto-graded (see
 | 18 | Hyperparameters and Nested CV | assignment 7 | nested cross-validation, penalisation schemes |
 | 19 | Representational Similarity Analysis | intro | RSA theory and computation |
 | 20 | RSA | assignment 8 | encoding-retrieval similarity |
-| X, Y | Connectivity, Oscillation Detection | optional | further methods |
+| X, Y | Connectivity, Oscillation Detection | optional | further methods (Rhino only: need `pycircstat` / `irasa`, which no longer install locally) |
 
 Behavioral modules (01-05) use the scalp-EEG PEERS studies (`ltpFR`, `ltpFR2`,
 `VFFR`); every EEG module from 06 onward uses intracranial FR1 data. Module 10
