@@ -74,6 +74,8 @@ def run_sessions(func, task, subjects, name, workers=1, sessions=None, cache_dir
     df = cml_data.session_dataframe(task) if sessions is None else sessions
     df = df[df["subject"].isin(list(subjects))]
     pairs = list(zip(df["subject"], df["session"]))
+    if cache_dir == "results":                            # CML_RESULTS_DIR redirects e.g. simulated runs
+        cache_dir = os.environ.get("CML_RESULTS_DIR", "results")
     folder = Path(cache_dir) / name
     folder.mkdir(parents=True, exist_ok=True)
     log_file = folder / "errors.log"

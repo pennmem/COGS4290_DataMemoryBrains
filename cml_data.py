@@ -10,6 +10,9 @@ Files are cached under ./bids_data (or $CML_BIDS_CACHE) and never re-downloaded.
 EEG recordings are 300-700 MB per session and are only fetched on request.
 You are asked once per run before anything is downloaded; non-interactive runs
 set CML_AUTO_APPROVE=1 (and CML_DATA_SOURCE=rhino|openneuro if both exist).
+CML_DATA_SOURCE=local treats the cache as a complete dataset (no network) --
+used with the simulated sessions of cml_sim.py. CML_INTRAC_SUBS=A,B,C overrides
+the cohort for the same purpose.
 
     python cml_data.py FR1 --list-subjects
     python cml_data.py FR1 --subject R1111M --session 0 --eeg --acq bipolar
@@ -48,6 +51,8 @@ INTRAC_SUBS = ['R1060M', 'R1061T', 'R1065J', 'R1066P', 'R1077T',
                'R1113T', 'R1145J', 'R1151E', 'R1154D', 'R1158T',
                'R1168T', 'R1195E', 'R1217T', 'R1308T', 'R1309M',
                'R1316T', 'R1337E', 'R1341T', 'R1395M', 'R1441T']
+if os.environ.get("CML_INTRAC_SUBS"):
+    INTRAC_SUBS = os.environ["CML_INTRAC_SUBS"].split(",")
 INTRAC_SUBS_SMALL = INTRAC_SUBS[:3]     # develop on these before running the whole cohort
 
 _ROOT_FILES = ("dataset_description.json", "participants.tsv", "participants.json", "README")
@@ -169,7 +174,11 @@ def session_dataframe(task):
     import pandas as pd
     task = _canonical_task(task)
     pat = re.compile(rf"sub-([^/_]+)/ses-([^/_]+)/.*task-{task}", re.IGNORECASE)
-    pairs = sorted({(m.group(1), m.group(2)) for k, _ in _s3_list(f"{dataset_of(task)}/") if (m := pat.search(k))})
+    if os.environ.get("CML_DATA_SOURCE", "").lower() == "local":         # scan the (complete) local copy
+        keys = [str(f.relative_to(cache_dir() / dataset_of(task))) for f in (cache_dir() / dataset_of(task)).rglob("*_beh.tsv")]
+    else:
+        keys = [k for k, _ in _s3_list(f"{dataset_of(task)}/")]
+    pairs = sorted({(m.group(1), m.group(2)) for k in keys if (m := pat.search(k))})
     return pd.DataFrame(pairs, columns=["subject", "session"]).assign(task=task)
 
 
@@ -209,6 +218,8 @@ def plan_download(task, subject=None, session=None, include_timeseries=False, ac
 def prefetch(task, subjects=None, sessions=None, include_timeseries=False, acquisition=None, workers=8):
     """Download everything these subjects/sessions need, `workers` files at a time, after one approval."""
     from concurrent.futures import ThreadPoolExecutor
+    if os.environ.get("CML_DATA_SOURCE", "").lower() == "local":
+        return cache_dir() / dataset_of(task)
     root, todo = plan_download(task, subjects, sessions, include_timeseries, acquisition)
     _approve(todo, task)
     with ThreadPoolExecutor(max_workers=workers) as pool:
@@ -240,6 +251,8 @@ def get_bids_root(task, subject=None, session=None, include_timeseries=False, ac
     task = _canonical_task(task)
     rhino = Path(RHINO_ROOTS.get(dataset_of(task), "/nonexistent"))
     source = os.environ.get("CML_DATA_SOURCE", "").lower()
+    if source == "local":
+        return cache_dir() / dataset_of(task)
     if rhino.exists() and source != "openneuro":
         if source == "rhino":
             return rhino

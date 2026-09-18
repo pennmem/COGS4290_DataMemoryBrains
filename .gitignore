@@ -24,3 +24,6 @@ bids_data/
 
 # Accidental nested clone of this repo (not deleted, just untracked)
 COGS4290_DataMemoryBrains/
+
+# Simulated sessions written by cml_sim.py
+sim_bids/

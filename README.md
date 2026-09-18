@@ -49,6 +49,8 @@ onward analyse the 20-subject cohort `cml_data.INTRAC_SUBS`.
 `cml_parallel.run_sessions` runs your per-session function over that cohort
 (caching one result per session, several sessions at a time) — the local
 replacement for the lab's cluster job launcher.
+`cml_sim.make_session` writes a fake session with a known effect, so you can check
+your pipeline against a known answer before running it on real data (Module 11).
 
 By the end of this course, you should be able to carry out EEG/iEEG/ECoG
 analyses, like computing spectral power and phase, and to compute statistics or

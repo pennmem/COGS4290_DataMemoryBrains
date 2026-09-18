@@ -23,6 +23,7 @@ checked against ``grader/reference/`` when that exists (one ✓/✗ line per key
 from __future__ import annotations
 
 import json
+import os
 import pickle
 import warnings
 from pathlib import Path
@@ -77,6 +78,8 @@ def enable_figure_capture():
 # --------------------------------------------------------------------------- #
 def module_dir(module, answers_root="answers"):
     """Return (and create) the ``answers/Module_<NN>`` directory for *module*."""
+    if answers_root == "answers":                       # CML_ANSWERS_ROOT redirects e.g. simulated runs
+        answers_root = os.environ.get("CML_ANSWERS_ROOT", "answers")
     d = Path(answers_root) / f"Module_{int(module):02d}"
     d.mkdir(parents=True, exist_ok=True)
     return d
