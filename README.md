@@ -52,6 +52,13 @@ replacement for the lab's cluster job launcher.
 `cml_sim.make_session` writes a fake session with a known effect, so you can check
 your pipeline against a known answer before running it on real data (Module 11).
 
+Modules 14, 16 and 18 analyse spectral power for the whole cohort. Computing it
+yourself means ~90 GB of downloads, so the per-session files are provided: unzip
+`cohort_power.zip` in this folder (creating `results/power/`, `results/power_avgref/`,
+`results/power_f8/`) and the cohort call in those notebooks loads them instead of
+recomputing. Module 10, where you write the extraction, still runs on real data
+(one session, then three subjects, ~10 GB).
+
 By the end of this course, you should be able to carry out EEG/iEEG/ECoG
 analyses, like computing spectral power and phase, and to compute statistics or
 to apply machine learning models to those data.
