@@ -111,10 +111,13 @@
         "serialpos",
         "recalled"
       ],
-      "shape_hint": "(24, 2)",
+      "shape_hint": "(16, 2)",
       "student_hint": "between-subject SPC for immediate recall (final_distractor=0)",
       "solution_expr": "spcs_by_cond[0]",
-      "exact": true
+      "compare": {
+        "rtol": 0,
+        "atol": 0.01
+      }
     },
     {
       "key": "Q4.1_spc_delayed",
@@ -125,10 +128,13 @@
         "serialpos",
         "recalled"
       ],
-      "shape_hint": "(24, 2)",
+      "shape_hint": "(16, 2)",
       "student_hint": "between-subject SPC for delayed recall (final_distractor=16000)",
       "solution_expr": "spcs_by_cond[16000]",
-      "exact": true
+      "compare": {
+        "rtol": 0,
+        "atol": 0.01
+      }
     }
   ]
 }

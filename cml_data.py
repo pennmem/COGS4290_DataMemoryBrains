@@ -173,7 +173,7 @@ def session_dataframe(task):
     would only see what has been downloaded so far)."""
     import pandas as pd
     task = _canonical_task(task)
-    pat = re.compile(rf"sub-([^/_]+)/ses-([^/_]+)/.*task-{task}", re.IGNORECASE)
+    pat = re.compile(rf"sub-([^/_]+)/ses-([^/_]+)/.*task-{task}_", re.IGNORECASE)   # "_" so ltpFR does not match ltpFR2
     if os.environ.get("CML_DATA_SOURCE", "").lower() == "local":         # scan the (complete) local copy
         keys = [str(f.relative_to(cache_dir() / dataset_of(task))) for f in (cache_dir() / dataset_of(task)).rglob("*_beh.tsv")]
     else:
@@ -237,7 +237,7 @@ def _have_locally(root, task, subject, session, include_timeseries, acquisition)
     sessions = [session] if isinstance(session, (int, str)) else session
     for sub in subjects:
         for ses in sessions:
-            found = list((root / f"sub-{str(sub).replace('sub-', '')}" / f"ses-{str(ses).replace('ses-', '')}").rglob(f"*task-{task}*"))
+            found = list((root / f"sub-{str(sub).replace('sub-', '')}" / f"ses-{str(ses).replace('ses-', '')}").rglob(f"*task-{task}_*"))
             if include_timeseries:
                 found = [f for f in found if f.name.endswith(_TIMESERIES_EXT) and (not acquisition or f"acq-{acquisition}" in f.name)]
             if not found:
