@@ -15,9 +15,12 @@
         "Transition Position",
         "IRT (ms)"
       ],
-      "student_hint": "IRT growth curves for LTP093: mean IRT (ms) per (total correct on the list, transition position) -- the points seaborn plots, one line per total-correct",
+      "student_hint": "IRT growth curves for LTP093 (sessions 0-22): mean IRT (ms) per (total correct on the list, transition position), one row per cell, sorted by Total Correct then Transition Position",
       "solution_expr": "irt_ltp093",
-      "exact": true
+      "compare": {
+        "rtol": 0.02,
+        "atol": 0
+      }
     },
     {
       "key": "Q1.2_irt_between_subject",
@@ -29,9 +32,12 @@
         "Transition Position",
         "IRT (ms)"
       ],
-      "student_hint": "between-subject IRT growth curves over the 24-session cohort (session 23 dropped): mean IRT (ms) per (total correct, transition position)",
+      "student_hint": "between-subject IRT growth curves over the 24-session cohort (session 23 dropped): mean of the subject-level IRTs (ms) per (total correct, transition position), sorted by Total Correct then Transition Position",
       "solution_expr": "irt_all",
-      "exact": true
+      "compare": {
+        "rtol": 0.02,
+        "atol": 0
+      }
     },
     {
       "key": "Q2.1_lag_crp_ltp093_ses0",
@@ -45,7 +51,10 @@
       ],
       "student_hint": "Lag-CRP for LTP093 session 0 only: conditional response probability at each lag (-23..23), NaN at lag 0",
       "solution_expr": "crp0",
-      "exact": true
+      "compare": {
+        "rtol": 0,
+        "atol": 0.01
+      }
     },
     {
       "key": "Q2.2_lag_crp_ltp093_all",
@@ -57,9 +66,12 @@
         "lag",
         "CRP"
       ],
-      "student_hint": "Lag-CRP for LTP093 averaged over all of the subject's ltpfr2 sessions",
+      "student_hint": "Lag-CRP for LTP093 pooled over sessions 0-22 (lags -23..23, NaN at lag 0)",
       "solution_expr": "crp_ltp093",
-      "exact": true
+      "compare": {
+        "rtol": 0,
+        "atol": 0.01
+      }
     },
     {
       "key": "Q2.3_lag_crp_between_subject",
@@ -71,9 +83,12 @@
         "lag",
         "CRP"
       ],
-      "student_hint": "between-subject Lag-CRP over the 24-session cohort (per-subject CRP at each lag; seaborn averages across subjects)",
+      "student_hint": "Lag-CRP per subject of the 24-session cohort (session 23 dropped), lags -23..23, sorted by subject then lag; seaborn averages across subjects",
       "solution_expr": "crp_all",
-      "exact": true
+      "compare": {
+        "rtol": 0,
+        "atol": 0.01
+      }
     },
     {
       "key": "Q3.1_pli_recency",
@@ -85,9 +100,12 @@
         "list_lag",
         "PLI"
       ],
-      "student_hint": "PLI recency curve restricted to lists 10-24: per-subject proportion of prior-list intrusions coming from list_lag lists back (seaborn averages across subjects)",
+      "student_hint": "PLI recency curve restricted to lists 10-24: per-subject proportion of the PLIs from 1-9 lists back that came from list_lag lists back, sorted by subject then list_lag (seaborn averages across subjects)",
       "solution_expr": "plis",
-      "exact": true
+      "compare": {
+        "rtol": 0,
+        "atol": 0.01
+      }
     }
   ]
 }

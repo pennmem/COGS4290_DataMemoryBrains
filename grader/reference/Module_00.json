@@ -1,0 +1,86 @@
+{
+ "Q1.1_day_cold": {
+  "kind": "hash",
+  "shape": [],
+  "columns": null,
+  "sha256": "d029fa3a95e174a19934857f535eb9427d967218a36ea014b70ad704bc6c8d1c"
+ },
+ "Q1.1_day_warm": {
+  "kind": "hash",
+  "shape": [],
+  "columns": null,
+  "sha256": "79bf08685d3138f9b109c3546780f056bc954fd69377b84a2cf23622e464897b"
+ },
+ "Q1.2_layer_stdevs": {
+  "kind": "hash",
+  "shape": [
+   5
+  ],
+  "columns": null,
+  "sha256": "c229362ddd3d07ae6ae90443cc6cfb6da7816a3436e54b5ae7723125faabe17c"
+ },
+ "Q1.3_t_summer_week": {
+  "kind": "hash",
+  "shape": [
+   50,
+   100
+  ],
+  "columns": null,
+  "sha256": "f55a9d645490b48d58e1c39bf8fbab6eb9aa404779f39b00d858cf79d0daae10"
+ },
+ "Q1.3_t_winter_week": {
+  "kind": "hash",
+  "shape": [
+   50,
+   100
+  ],
+  "columns": null,
+  "sha256": "e064eeed3c65efbe37f3afd6640e58c63ea2de95aefc8e7575a3edbea86b4a6e"
+ },
+ "Q2.2_qualifying_per_league": {
+  "kind": "hash",
+  "shape": [],
+  "columns": null,
+  "sha256": "f69f3f9905d3cbc053fee80a7bf38ce71d3ca15fb228ca8fb9054c8dd0873ad5"
+ },
+ "Q2.3_mean_cmp_pct": {
+  "kind": "hash",
+  "shape": [],
+  "columns": null,
+  "sha256": "aeb7440b03f4909a490e68c8cf0c71ed5d733ec4a9a0a010c3954969cf5f081b"
+ },
+ "Q2.3_filtered_players": {
+  "kind": "hash",
+  "shape": [
+   45
+  ],
+  "columns": null,
+  "sha256": "09d614555bb6edd63801e99086a35d8122c709127cc5032c9f9b4a8618bcbaf7"
+ },
+ "Q2.4_players_to_sign": {
+  "kind": "hash",
+  "shape": [
+   16
+  ],
+  "columns": null,
+  "sha256": "94cb4f6d338067a6368224c27d048d55bc75a2320b1846e9a4d4d84366472580"
+ },
+ "Q2.4_se_cmp_pct": {
+  "kind": "hash",
+  "shape": [],
+  "columns": null,
+  "sha256": "8cdf6e4a8e41d4e91095c734734e4fb8329619cfad1619453c18d604c9336567"
+ },
+ "Q3.1_char_line_counts": {
+  "kind": "hash",
+  "shape": [],
+  "columns": null,
+  "sha256": "000e5c1b98bafc07bcbcdb2f19f3694b7a83c1d111d44c9d60458bf720fc601f"
+ },
+ "Q3.2_julia_count": {
+  "kind": "hash",
+  "shape": [],
+  "columns": null,
+  "sha256": "2c624232cdd221771294dfbb310aca000a0df6ac8b66b696d90ef06fdefb64a3"
+ }
+}
